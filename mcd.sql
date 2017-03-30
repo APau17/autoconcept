@@ -15,7 +15,7 @@ CREATE TABLE Bon_de_commande(
         Contact_id   Int ,
         Litige_id    Int ,
         Contact_1_id Int ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -68,7 +68,7 @@ CREATE TABLE Litige(
         dateLitige         Date ,
         commentaire        Varchar (25) ,
         Bon_de_commande_id Int ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -78,8 +78,8 @@ CREATE TABLE Litige(
 
 CREATE TABLE Emplacement(
         id  int (11) Auto_increment  NOT NULL ,
-        nom int (11)
-        parent_id int(11),
+        nom int (11) ,
+        parent_id int(11) ,
         PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
@@ -90,7 +90,7 @@ CREATE TABLE Emplacement(
 
 CREATE TABLE Client(
         id Int NOT NULL ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -104,7 +104,7 @@ CREATE TABLE Voiture_client(
         dateMiseEnCirculation Varchar (25) ,
         Contact_id            Int ,
         Modele_de_voiture_id  Int ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -114,7 +114,7 @@ CREATE TABLE Voiture_client(
 
 CREATE TABLE Fournisseur(
         id Int NOT NULL ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -130,7 +130,7 @@ CREATE TABLE Ligne_de_commande(
         Bon_de_commande_id Int ,
         id_Bon_de_commande Int ,
         Modele_de_piece_id Int ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -147,7 +147,7 @@ CREATE TABLE Contact(
         adresse     Varchar (25) ,
         ville       Varchar (25) ,
         code_postal Varchar (25) ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -162,7 +162,7 @@ CREATE TABLE Entreprise(
         siegeSocial   Varchar (25) ,
         codePostal    Varchar (25) ,
         ville         Varchar (25) ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -174,7 +174,7 @@ CREATE TABLE Fiche_salarie(
         id           int (11) Auto_increment  NOT NULL ,
         dateEmbauche Date ,
         service      Varchar (25) ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -190,7 +190,7 @@ CREATE TABLE Modele_de_voiture(
         annee            Date ,
         motorisation     Varchar (25) ,
         carburantEnergie Varchar (25) ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -201,7 +201,7 @@ CREATE TABLE Modele_de_voiture(
 CREATE TABLE Lot_Emplacement(
         id             Int NOT NULL ,
         Emplacement_id Int NOT NULL ,
-        PRIMARY KEY (id ,Emplacement_id )
+        PRIMARY KEY (id ,Emplacement_id)
 )ENGINE=InnoDB;
 
 
@@ -213,7 +213,7 @@ CREATE TABLE Contact_Fiche_salarie_Entreprise(
         id               Int NOT NULL ,
         Contact_id       Int NOT NULL ,
         Fiche_salarie_id Int NOT NULL ,
-        PRIMARY KEY (id ,Contact_id ,Fiche_salarie_id )
+        PRIMARY KEY (id ,Contact_id ,Fiche_salarie_id)
 )ENGINE=InnoDB;
 
 
@@ -224,7 +224,7 @@ CREATE TABLE Contact_Fiche_salarie_Entreprise(
 CREATE TABLE Compatibilite(
         id                   Int NOT NULL ,
         Modele_de_voiture_id Int NOT NULL ,
-        PRIMARY KEY (id ,Modele_de_voiture_id )
+        PRIMARY KEY (id ,Modele_de_voiture_id)
 )ENGINE=InnoDB;
 
 
@@ -235,7 +235,7 @@ CREATE TABLE Compatibilite(
 CREATE TABLE Dependre(
         id                 Int NOT NULL ,
         id_Modele_de_piece Int NOT NULL ,
-        PRIMARY KEY (id ,Modele_de_piece_id )
+        PRIMARY KEY (id ,Modele_de_piece_id)
 )ENGINE=InnoDB;
 
 
