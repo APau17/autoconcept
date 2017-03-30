@@ -39,20 +39,22 @@ CREATE TABLE Lot(
 
 CREATE TABLE Modele_de_piece(
         id                       int (11) Auto_increment  NOT NULL ,
-        nom                      Varchar (25) ,
-        designation              Varchar (25) ,
-        marque                   Varchar (25) ,
-        prixUnitaire             Float ,
-        unite                    Varchar (25) ,
-        categorie                Varchar (25) ,
-        type                     Int ,
-        restriction              Varchar (25) ,
-        compatibiliteApplication Varchar (25) ,
-        commentaire              Varchar (25) ,
-        fichePdf                 Varchar (25) ,
-        id_Contact               Int ,
+        nom                      Varchar (50),
+        designation              Varchar (120),
+        marque                   Varchar (50), # Nouvelle table ?
+        prixUnitaire             DECIMAL(15, 2),
+        unite                    Varchar (25), # Nouvelle table ?
+        categorie_id             Int,
+        restriction              Varchar (2500), # Commentaire
+        compatibiliteApplication Varchar (2500), # Commentaire
+        commentaire              Varchar (2500),
+        fichePdf                 Varchar (250),
+        referanceConstructor     Varchar (25),
+        lft                      Int, # Minimal internal
+        rgt                      Int, # Maximal interval
+        Contact_id               Int,
         PRIMARY KEY (id )
-)ENGINE=InnoDB;
+)ENGINE=MySAM;
 
 
 #------------------------------------------------------------
