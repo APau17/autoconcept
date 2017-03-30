@@ -55,7 +55,7 @@ CREATE TABLE Modele_de_piece(
         Categorie_id             Int,
         PRIMARY KEY (id),
         CHECK(prixUnitaire > 0)
-)ENGINE=MySAM;
+)ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
