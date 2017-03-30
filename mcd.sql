@@ -191,10 +191,10 @@ CREATE TABLE Modele_de_voiture(
 
 
 #------------------------------------------------------------
-# Table: Stocker
+# Table: Lot_Emplacement
 #------------------------------------------------------------
 
-CREATE TABLE Stocker(
+CREATE TABLE Lot_Emplacement(
         id             Int NOT NULL ,
         id_Emplacement Int NOT NULL ,
         PRIMARY KEY (id ,id_Emplacement )
@@ -202,10 +202,10 @@ CREATE TABLE Stocker(
 
 
 #------------------------------------------------------------
-# Table: Salarié
+# Table: Contact_Fiche salarié_Entreprise
 #------------------------------------------------------------
 
-CREATE TABLE Salarie(
+CREATE TABLE Contact_Fiche_salarie_Entreprise(
         id               Int NOT NULL ,
         id_Contact       Int NOT NULL ,
         id_Fiche_salarie Int NOT NULL ,
@@ -246,11 +246,11 @@ ALTER TABLE Voiture_client ADD CONSTRAINT FK_Voiture_client_id_Modele_de_voiture
 ALTER TABLE Fournisseur ADD CONSTRAINT FK_Fournisseur_id FOREIGN KEY (id) REFERENCES Contact(id);
 ALTER TABLE Ligne_de_commande ADD CONSTRAINT FK_Ligne_de_commande_id_Bon_de_commande FOREIGN KEY (id_Bon_de_commande) REFERENCES Bon_de_commande(id);
 ALTER TABLE Ligne_de_commande ADD CONSTRAINT FK_Ligne_de_commande_id_Modele_de_piece FOREIGN KEY (id_Modele_de_piece) REFERENCES Modele_de_piece(id);
-ALTER TABLE Stocker ADD CONSTRAINT FK_Stocker_id FOREIGN KEY (id) REFERENCES Lot(id);
-ALTER TABLE Stocker ADD CONSTRAINT FK_Stocker_id_Emplacement FOREIGN KEY (id_Emplacement) REFERENCES Emplacement(id);
-ALTER TABLE Salarie ADD CONSTRAINT FK_Salarie_id FOREIGN KEY (id) REFERENCES Entreprise(id);
-ALTER TABLE Salarie ADD CONSTRAINT FK_Salarie_id_Contact FOREIGN KEY (id_Contact) REFERENCES Contact(id);
-ALTER TABLE Salarie ADD CONSTRAINT FK_Salarie_id_Fiche_salarie FOREIGN KEY (id_Fiche_salarie) REFERENCES Fiche_salarie(id);
+ALTER TABLE Lot_Emplacement ADD CONSTRAINT FK_Lot_Emplacement_id FOREIGN KEY (id) REFERENCES Lot(id);
+ALTER TABLE Lot_Emplacement ADD CONSTRAINT FK_Lot_Emplacement_id_Emplacement FOREIGN KEY (id_Emplacement) REFERENCES Emplacement(id);
+ALTER TABLE Contact_Fiche salarié_Entreprise ADD CONSTRAINT FK_Contact_Fiche_salarie_Entreprise_id FOREIGN KEY (id) REFERENCES Entreprise(id);
+ALTER TABLE Contact_Fiche salarié_Entreprise ADD CONSTRAINT FK_Contact_Fiche_salarie_Entreprise_id_Contact FOREIGN KEY (id_Contact) REFERENCES Contact(id);
+ALTER TABLE Contact_Fiche salarié_Entreprise ADD CONSTRAINT FK_Contact_Fiche_salarie_Entreprise_id_Fiche_salarie FOREIGN KEY (id_Fiche_salarie) REFERENCES Fiche_salarie(id);
 ALTER TABLE Compatibilite ADD CONSTRAINT FK_Compatibilite_id FOREIGN KEY (id) REFERENCES Modele_de_piece(id);
 ALTER TABLE Compatibilite ADD CONSTRAINT FK_Compatibilite_id_Modele_de_voiture FOREIGN KEY (id_Modele_de_voiture) REFERENCES Modele_de_voiture(id);
 ALTER TABLE Dependre ADD CONSTRAINT FK_Dependre_id FOREIGN KEY (id) REFERENCES Modele_de_piece(id);
