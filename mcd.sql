@@ -38,23 +38,24 @@ CREATE TABLE Lot(
 #------------------------------------------------------------
 
 CREATE TABLE Modele_de_piece(
-        id                       int (11) Auto_increment  NOT NULL ,
-        nom                      Varchar (50),
+        id                       Int Auto_increment  NOT NULL ,
+        nom                      Varchar (50) NOT NULL UNIQUE,
         designation              Varchar (120),
         marque                   Varchar (50), # Nouvelle table ?
-        prixUnitaire             DECIMAL(15, 2),
-        unite                    Varchar (25), # Nouvelle table ?
-        categorie_id             Int,
-        restriction              Varchar (2500), # Commentaire
-        compatibiliteApplication Varchar (2500), # Commentaire
+        prixUnitaire             DECIMAL(15, 2) NOT NULL,
+        unite                    Varchar (25) NOT NULL, # Nouvelle table ?
+        restriction              Varchar (2500),
+        compatibiliteApplication Varchar (2500),
         commentaire              Varchar (2500),
-        fichePdf                 Varchar (250),
+        fichePdf                 Varchar (250) UNIQUE,
         referanceConstructor     Varchar (25),
-        lft                      Int, # Minimal internal
-        rgt                      Int, # Maximal interval
+        lft                      Int NOT NULL, # Minimal interval enfants
+        rgt                      Int NOT NULL, # Maximal interval enfants
         Contact_id               Int,
-        PRIMARY KEY (id )
-)ENGINE=MySAM;
+        Categorie_id             Int,
+        PRIMARY KEY (id),
+        CHECK(prixUnitaire > 0)
+)ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
