@@ -78,7 +78,7 @@ CREATE TABLE Litige(
 
 CREATE TABLE Emplacement(
         id  int (11) Auto_increment  NOT NULL ,
-        nom int (11) Auto_increment  ,
+        nom int (11)
         parent_id int(11),
         PRIMARY KEY (id)
 )ENGINE=InnoDB;
