@@ -239,7 +239,6 @@ CREATE TABLE Dependre(
 )ENGINE=InnoDB;
 
 
-
 # Bon de commande
 ALTER TABLE Bon_de_commande ADD CONSTRAINT FK_Bon_de_commande_Contact_id FOREIGN KEY (Contact_id) REFERENCES Contact(id);
 ALTER TABLE Bon_de_commande ADD CONSTRAINT FK_Bon_de_commande_Litige_id FOREIGN KEY (Litige_id) REFERENCES Litige(id);
