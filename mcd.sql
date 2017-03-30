@@ -27,9 +27,10 @@ CREATE TABLE Lot(
         id                 int (11) Auto_increment  NOT NULL ,
         numeroFournisseur  Varchar (50) UNIQUE,
         quantite           Varchar (25) NOT NULL,
-        unite              Varchar (25) ,
-        id_Modele_de_piece Int ,
-        PRIMARY KEY (id )
+        unite              Varchar (25) NOT NULL,
+        Modele_de_piece_id Int ,
+        PRIMARY KEY (id),
+        CHECK(quantite > 0)
 )ENGINE=InnoDB;
 
 
@@ -78,7 +79,8 @@ CREATE TABLE Litige(
 CREATE TABLE Emplacement(
         id  int (11) Auto_increment  NOT NULL ,
         nom int (11) Auto_increment  ,
-        PRIMARY KEY (id )
+        parent_id int(11),
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -126,7 +128,7 @@ CREATE TABLE Ligne_de_commande(
         quantite_commandee Int ,
         quantite_livree    Int ,
         id_Bon_de_commande Int ,
-        id_Modele_de_piece Int ,
+        Modele_de_piece_id Int ,
         PRIMARY KEY (id )
 )ENGINE=InnoDB;
 
@@ -231,8 +233,8 @@ CREATE TABLE Compatibilite(
 
 CREATE TABLE Dependre(
         id                 Int NOT NULL ,
-        id_Modele_de_piece Int NOT NULL ,
-        PRIMARY KEY (id ,id_Modele_de_piece )
+        Modele_de_piece_id Int NOT NULL ,
+        PRIMARY KEY (id ,Modele_de_piece_id )
 )ENGINE=InnoDB;
 
 # Bon de commande
@@ -241,7 +243,7 @@ ALTER TABLE Bon_de_commande ADD CONSTRAINT FK_Bon_de_commande_id_Litige FOREIGN 
 ALTER TABLE Bon_de_commande ADD CONSTRAINT FK_Bon_de_commande_id_Contact_1 FOREIGN KEY (id_Contact_1) REFERENCES Contact(id);
 
 # Lot
-ALTER TABLE Lot ADD CONSTRAINT FK_Lot_id_Modele_de_piece FOREIGN KEY (id_Modele_de_piece) REFERENCES Modele_de_piece(id);
+ALTER TABLE Lot ADD CONSTRAINT FK_Lot_Modele_de_piece_id FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id);
 
 # Modèle
 ALTER TABLE Modele_de_piece ADD CONSTRAINT FK_Modele_de_piece_id_Contact FOREIGN KEY (id_Contact) REFERENCES Contact(id);
@@ -259,11 +261,14 @@ ALTER TABLE Fournisseur ADD CONSTRAINT FK_Fournisseur_id FOREIGN KEY (id) REFERE
 
 # Ligne de commande
 ALTER TABLE Ligne_de_commande ADD CONSTRAINT FK_Ligne_de_commande_id_Bon_de_commande FOREIGN KEY (id_Bon_de_commande) REFERENCES Bon_de_commande(id);
-ALTER TABLE Ligne_de_commande ADD CONSTRAINT FK_Ligne_de_commande_id_Modele_de_piece FOREIGN KEY (id_Modele_de_piece) REFERENCES Modele_de_piece(id);
+ALTER TABLE Ligne_de_commande ADD CONSTRAINT FK_Ligne_de_commande_Modele_de_piece_id FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id);
 
 # Lot emplacement
 ALTER TABLE Lot_Emplacement ADD CONSTRAINT FK_Lot_Emplacement_id FOREIGN KEY (id) REFERENCES Lot(id);
 ALTER TABLE Lot_Emplacement ADD CONSTRAINT FK_Lot_Emplacement_id_Emplacement FOREIGN KEY (id_Emplacement) REFERENCES Emplacement(id);
+
+# Emplacement
+ALTER TABLE Emplacement ADD CONSTRAINT FK_Emplacement_id_Emplacement FOREIGN KEY (parent_id) REFERENCES Emplacement(id);
 
 # Contact fiche
 ALTER TABLE Contact_Fiche salarié_Entreprise ADD CONSTRAINT FK_Contact_Fiche_salarie_Entreprise_id FOREIGN KEY (id) REFERENCES Entreprise(id);
@@ -276,4 +281,4 @@ ALTER TABLE Compatibilite ADD CONSTRAINT FK_Compatibilite_id_Modele_de_voiture F
 
 # Dependre
 ALTER TABLE Dependre ADD CONSTRAINT FK_Dependre_id FOREIGN KEY (id) REFERENCES Modele_de_piece(id);
-ALTER TABLE Dependre ADD CONSTRAINT FK_Dependre_id_Modele_de_piece FOREIGN KEY (id_Modele_de_piece) REFERENCES Modele_de_piece(id);
+ALTER TABLE Dependre ADD CONSTRAINT FK_Dependre_Modele_de_piece_id FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id);
