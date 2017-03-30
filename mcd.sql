@@ -25,20 +25,12 @@ CREATE TABLE Bon_de_commande(
 
 CREATE TABLE Lot(
         id                 int (11) Auto_increment  NOT NULL ,
-<<<<<<< HEAD
-        numeroFournisseur  Varchar (25) ,
-        quantite           Varchar (25) ,
-        unite              Varchar (25) ,
-        Modele_de_piece_id Int ,
-        PRIMARY KEY (id )
-=======
         numeroFournisseur  Varchar (50) UNIQUE,
         quantite           Varchar (25) NOT NULL,
         unite              Varchar (25) NOT NULL,
         Modele_de_piece_id Int ,
         PRIMARY KEY (id),
         CHECK(quantite > 0)
->>>>>>> refs/remotes/Izanami/master
 )ENGINE=InnoDB;
 
 
@@ -135,11 +127,8 @@ CREATE TABLE Ligne_de_commande(
         prixUnitaire       Float ,
         quantite_commandee Int ,
         quantite_livree    Int ,
-<<<<<<< HEAD
         Bon_de_commande_id Int ,
-=======
         id_Bon_de_commande Int ,
->>>>>>> refs/remotes/Izanami/master
         Modele_de_piece_id Int ,
         PRIMARY KEY (id )
 )ENGINE=InnoDB;
@@ -245,7 +234,6 @@ CREATE TABLE Compatibilite(
 
 CREATE TABLE Dependre(
         id                 Int NOT NULL ,
-<<<<<<< HEAD
         id_Modele_de_piece Int NOT NULL ,
         PRIMARY KEY (id ,Modele_de_piece_id )
 )ENGINE=InnoDB;
