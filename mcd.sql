@@ -25,11 +25,20 @@ CREATE TABLE Bon_de_commande(
 
 CREATE TABLE Lot(
         id                 int (11) Auto_increment  NOT NULL ,
+<<<<<<< HEAD
         numeroFournisseur  Varchar (25) ,
         quantite           Varchar (25) ,
         unite              Varchar (25) ,
         Modele_de_piece_id Int ,
         PRIMARY KEY (id )
+=======
+        numeroFournisseur  Varchar (50) UNIQUE,
+        quantite           Varchar (25) NOT NULL,
+        unite              Varchar (25) NOT NULL,
+        Modele_de_piece_id Int ,
+        PRIMARY KEY (id),
+        CHECK(quantite > 0)
+>>>>>>> refs/remotes/Izanami/master
 )ENGINE=InnoDB;
 
 
@@ -78,7 +87,8 @@ CREATE TABLE Litige(
 CREATE TABLE Emplacement(
         id  int (11) Auto_increment  NOT NULL ,
         nom int (11) Auto_increment  ,
-        PRIMARY KEY (id )
+        parent_id int(11),
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -125,7 +135,11 @@ CREATE TABLE Ligne_de_commande(
         prixUnitaire       Float ,
         quantite_commandee Int ,
         quantite_livree    Int ,
+<<<<<<< HEAD
         Bon_de_commande_id Int ,
+=======
+        id_Bon_de_commande Int ,
+>>>>>>> refs/remotes/Izanami/master
         Modele_de_piece_id Int ,
         PRIMARY KEY (id )
 )ENGINE=InnoDB;
@@ -231,6 +245,7 @@ CREATE TABLE Compatibilite(
 
 CREATE TABLE Dependre(
         id                 Int NOT NULL ,
+<<<<<<< HEAD
         id_Modele_de_piece Int NOT NULL ,
         PRIMARY KEY (id ,Modele_de_piece_id )
 )ENGINE=InnoDB;
@@ -254,5 +269,54 @@ ALTER TABLE Contact_Fiche salarié_Entreprise ADD CONSTRAINT FK_Contact_Fiche_sal
 ALTER TABLE Contact_Fiche salarié_Entreprise ADD CONSTRAINT FK_Contact_Fiche_salarie_Entreprise_Fiche_salarie_id FOREIGN KEY (Fiche_salarie_id) REFERENCES Fiche_salarie(id);
 ALTER TABLE Compatibilite ADD CONSTRAINT FK_Compatibilite_id FOREIGN KEY (id) REFERENCES Modele_de_piece(id);
 ALTER TABLE Compatibilite ADD CONSTRAINT FK_Compatibilite_Modele_de_voiture_id FOREIGN KEY (Modele_de_voiture_id) REFERENCES Modele_de_voiture(id);
+=======
+        Modele_de_piece_id Int NOT NULL ,
+        PRIMARY KEY (id ,Modele_de_piece_id )
+)ENGINE=InnoDB;
+
+# Bon de commande
+ALTER TABLE Bon_de_commande ADD CONSTRAINT FK_Bon_de_commande_id_Contact FOREIGN KEY (id_Contact) REFERENCES Contact(id);
+ALTER TABLE Bon_de_commande ADD CONSTRAINT FK_Bon_de_commande_id_Litige FOREIGN KEY (id_Litige) REFERENCES Litige(id);
+ALTER TABLE Bon_de_commande ADD CONSTRAINT FK_Bon_de_commande_id_Contact_1 FOREIGN KEY (id_Contact_1) REFERENCES Contact(id);
+
+# Lot
+ALTER TABLE Lot ADD CONSTRAINT FK_Lot_Modele_de_piece_id FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id);
+
+# Modèle
+ALTER TABLE Modele_de_piece ADD CONSTRAINT FK_Modele_de_piece_id_Contact FOREIGN KEY (id_Contact) REFERENCES Contact(id);
+
+# Litige
+ALTER TABLE Litige ADD CONSTRAINT FK_Litige_id_Bon_de_commande FOREIGN KEY (id_Bon_de_commande) REFERENCES Bon_de_commande(id);
+ALTER TABLE Client ADD CONSTRAINT FK_Client_id FOREIGN KEY (id) REFERENCES Contact(id);
+
+# Voiture des clients
+ALTER TABLE Voiture_client ADD CONSTRAINT FK_Voiture_client_id_Contact FOREIGN KEY (id_Contact) REFERENCES Contact(id);
+ALTER TABLE Voiture_client ADD CONSTRAINT FK_Voiture_client_id_Modele_de_voiture FOREIGN KEY (id_Modele_de_voiture) REFERENCES Modele_de_voiture(id);
+
+# Fournisseur
+ALTER TABLE Fournisseur ADD CONSTRAINT FK_Fournisseur_id FOREIGN KEY (id) REFERENCES Contact(id);
+
+# Ligne de commande
+ALTER TABLE Ligne_de_commande ADD CONSTRAINT FK_Ligne_de_commande_id_Bon_de_commande FOREIGN KEY (id_Bon_de_commande) REFERENCES Bon_de_commande(id);
+ALTER TABLE Ligne_de_commande ADD CONSTRAINT FK_Ligne_de_commande_Modele_de_piece_id FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id);
+
+# Lot emplacement
+ALTER TABLE Lot_Emplacement ADD CONSTRAINT FK_Lot_Emplacement_id FOREIGN KEY (id) REFERENCES Lot(id);
+ALTER TABLE Lot_Emplacement ADD CONSTRAINT FK_Lot_Emplacement_id_Emplacement FOREIGN KEY (id_Emplacement) REFERENCES Emplacement(id);
+
+# Emplacement
+ALTER TABLE Emplacement ADD CONSTRAINT FK_Emplacement_id_Emplacement FOREIGN KEY (parent_id) REFERENCES Emplacement(id);
+
+# Contact fiche
+ALTER TABLE Contact_Fiche salarié_Entreprise ADD CONSTRAINT FK_Contact_Fiche_salarie_Entreprise_id FOREIGN KEY (id) REFERENCES Entreprise(id);
+ALTER TABLE Contact_Fiche salarié_Entreprise ADD CONSTRAINT FK_Contact_Fiche_salarie_Entreprise_id_Contact FOREIGN KEY (id_Contact) REFERENCES Contact(id);
+ALTER TABLE Contact_Fiche salarié_Entreprise ADD CONSTRAINT FK_Contact_Fiche_salarie_Entreprise_id_Fiche_salarie FOREIGN KEY (id_Fiche_salarie) REFERENCES Fiche_salarie(id);
+
+# Compatibilite
+ALTER TABLE Compatibilite ADD CONSTRAINT FK_Compatibilite_id FOREIGN KEY (id) REFERENCES Modele_de_piece(id);
+ALTER TABLE Compatibilite ADD CONSTRAINT FK_Compatibilite_id_Modele_de_voiture FOREIGN KEY (id_Modele_de_voiture) REFERENCES Modele_de_voiture(id);
+
+# Dependre
+>>>>>>> refs/remotes/Izanami/master
 ALTER TABLE Dependre ADD CONSTRAINT FK_Dependre_id FOREIGN KEY (id) REFERENCES Modele_de_piece(id);
 ALTER TABLE Dependre ADD CONSTRAINT FK_Dependre_Modele_de_piece_id FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id);
