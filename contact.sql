@@ -61,13 +61,13 @@ CREATE TABLE IF NOT EXISTS Fiche_salarie  (
 
 CREATE TABLE IF NOT EXISTS Modele_de_voiture  (
         id               int (11) Auto_increment  NOT NULL ,
-        marque           Varchar (25) ,
+        marque           Varchar (50) ,
         modele           Varchar (25) ,
-        type             Varchar (25) ,
+        classe           Varchar (25) ,
         annee            Date ,
         motorisation     Varchar (25) ,
         carburantEnergie Varchar (25) ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 #------------------------------------------------------------

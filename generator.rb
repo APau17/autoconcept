@@ -86,7 +86,7 @@ end
 class Vehicule < Struct.new(:id,
                             :marque,
                             :modele,
-                            :type,
+                            :classe,
                             :annee,
                             :motorisation,
                             :carburantEnergie
@@ -95,9 +95,9 @@ class Vehicule < Struct.new(:id,
   def initialize(id = 0)
     self.id = id
     self.marque = Faker::Vehicle.manufacture
-    self.modele= Faker::Vehicule.model
-    self.type = Faker::Vehicule.type
-    self.annee = Faker::Time.between(DateTime.new(1970), DateTime.now).strftime("%Y")
+    self.modele = Faker::Vehicule.model
+    self.classe = Faker::Vehicule.type
+    self.annee = Faker::Time.between(DateTime.new(1970), DateTime.now).to_date.iso8601
     self.motorisation = Faker::Vehicule.cylinder
     self.carburantEnergie = Faker::Vehicule.energy
   end
@@ -183,7 +183,64 @@ class Salarie < Struct.new(:id,
   end
 
   def next
-    Entrepsie.new(seld.id + 1)
+    Salarie.new(seld.id + 1)
+  end
+end
+
+class VehiculeClient < Struct.new(:id,
+                                  :immatriculation,
+                                  :dateMiseEnCirculation,
+                                  :Contact_id,
+                                  :Modele_de_voiture_id
+                        )
+
+  def initialize(id = 0, contact_id = 1, modele_voiture = 1)
+    self.id = id
+    self.immatriculation = Faker::Vehicle.vin
+    self.dateMiseEnCirculation = Faker::Time.between(DateTime.new(1970), DateTime.now).to_date.iso8601
+    self.Contact_id = contact_id
+    self.Modele_de_voiture_id = modele_voiture
+  end
+
+  def next
+    VehiculeClient.new(seld.id + 1)
+  end
+end
+
+class Lot < Struct.new(:id,
+                       :numeroFournisseur,
+                       :quantite,
+                       :Modele_de_piece,
+                       :Unite_id,
+                       :Emplacement_id
+                        )
+
+  def initialize(id = 0, modele_piece = 1, emplacement = 1, unity = 1)
+    self.id = id
+    self.numeroFournisseur = Faker::Company.duns_number
+    self.quantite = Faker::Number.between(1, 100)
+    self.Modele_de_piece = modele_piece
+    self.Unite_id = unity
+    self.Emplacement_id = emplacement
+  end
+
+  def next
+    Lot.new(seld.id + 1)
+  end
+end
+
+class Unity < Struct.new(:id,
+                       :nom,
+                       :ratio,
+                       :Unite_base_id
+                        )
+
+  def initialize(id = 0)
+    self.id = id
+  end
+
+  def next
+    Unity.new(seld.id + 1)
   end
 end
 
@@ -215,15 +272,61 @@ class Hash
   end
 end
 
-#puts Piece.new.to_h.to_sql_insert
-#puts Vehicule.new.to_h.to_sql_insert("Voiture_client")
+r = Random.new
 
-#(1..10).each do |level|
-  #(1..10).each do |id|
-    #puts Emplacement.new(id, level).to_h.to_sql_insert("Emplacement")
-  #end
-#end
-
-(1..100).each do |level|
-  puts Salarie.new.to_h.to_sql_insert("Fiche_salarie")
+contacts = []
+(1..100).each do |i|
+  contacts.push Contact.new(i)
 end
+
+vehicules = []
+(1..100).each do |i|
+  vehicules.push Vehicule.new(i)
+end
+
+pieces = []
+(1..100).each do |i|
+  pieces.push Piece.new(i)
+end
+
+unites = []
+(1..10).each do |i|
+  unites.push Unity.new(i)
+end
+
+voiture_clients = []
+contacts.each do |client|
+  voiture_by_contact = r.rand(0...100)
+  (0..voiture_by_contact).each do |i|
+    voiture_clients.push VehiculeClient.new(i, client.id)
+  end
+end
+
+salary = []
+(1..50).each do |i|
+  salary.push Salarie.new(i)
+end
+
+company = []
+(1..50).each do |i|
+  company.push Entreprise.new(i)
+end
+
+emplacements = []
+(1..50).each do |i|
+  emplacements.push Emplacement.new(i)
+end
+
+lots = []
+pieces.each do |piece|
+  piece_by_lot = r.rand(0...100)
+  (0..piece_by_lot).each do |j|
+    lots.push Lot.new(j, piece.id, emplacements.sample.id, unites.sample.id)
+  end
+end
+
+lots.each do |lot|
+  puts lot.to_h.to_sql_insert("Lot")
+end
+
+

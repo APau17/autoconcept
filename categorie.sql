@@ -7,9 +7,11 @@ CREATE TABLE IF NOT EXISTS Categorie_piece (
 
         nom Varchar (50) NOT NULL,
 
-        lft Int (11) ,
+        lft Int (11)
+        COMMENT 'Minimal interval enfants',
 
-        rgt Int (11) ,
+        rgt Int (11)
+        COMMENT 'Maximal interval enfants',
 
         # Keys
         Modele_de_piece_id Int ,
@@ -21,9 +23,12 @@ CREATE TABLE IF NOT EXISTS Categorie_commande (
 
         nom Varchar (50) NOT NULL,
 
-        lft Int (11) ,
+        lft Int (11)
+        COMMENT 'Minimal interval enfants',
 
-        rgt Int (11) ,
+        rgt Int (11)
+        COMMENT 'Maximal interval enfants',
+
 
         # Keys
         Ligne_de_commande_id Int ,
