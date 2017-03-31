@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #------------------------------------------------------------
 #        Script MySQL.
 #------------------------------------------------------------
@@ -239,6 +240,8 @@ CREATE TABLE Dependre(
 )ENGINE=InnoDB;
 
 
+=======
+>>>>>>> refs/remotes/Izanami/master
 # Bon de commande
 ALTER TABLE Bon_de_commande ADD CONSTRAINT FK_Bon_de_commande_Contact_id FOREIGN KEY (Contact_id) REFERENCES Contact(id);
 ALTER TABLE Bon_de_commande ADD CONSTRAINT FK_Bon_de_commande_Litige_id FOREIGN KEY (Litige_id) REFERENCES Litige(id);
@@ -282,7 +285,3 @@ ALTER TABLE Contact_Fiche salarié_Entreprise ADD CONSTRAINT FK_Contact_Fiche_sal
 # Compatibilite
 ALTER TABLE Compatibilite ADD CONSTRAINT FK_Compatibilite_id FOREIGN KEY (id) REFERENCES Modele_de_piece(id);
 ALTER TABLE Compatibilite ADD CONSTRAINT FK_Compatibilite_Modele_de_voiture_id FOREIGN KEY (Modele_de_voiture_id) REFERENCES Modele_de_voiture(id);
-
-# Dependre
-ALTER TABLE Dependre ADD CONSTRAINT FK_Dependre_id FOREIGN KEY (id) REFERENCES Modele_de_piece(id);
-ALTER TABLE Dependre ADD CONSTRAINT FK_Dependre_Modele_de_piece_id FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id);
