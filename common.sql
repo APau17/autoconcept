@@ -7,6 +7,10 @@ CREATE TABLE IF NOT EXISTS Unite  (
 
         nom Varchar (25) NOT NULL UNIQUE,
 
-        ratio Float,
+        ratio Float
         COMMENT 'Ratio entre les unites',
+
+        # Keys
+        Unite_base_id Int,
+        PRIMARY KEY (id)
 ) ENGINE=InnoDB;
