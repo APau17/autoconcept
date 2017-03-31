@@ -76,9 +76,13 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Emplacement  (
-        id             Int NOT NULL,
-        Emplacement_id Int NOT NULL,
-        PRIMARY KEY (id, Emplacement_id)
+        id Int NOT NULL,
+        nom Varchar(50),
+
+        # Keys
+        parent_id Int NOT NULL
+        COMMENT 'Recursive emplacement',
+        PRIMARY KEY (id, parent_id)
 )ENGINE=InnoDB;
 
 #------------------------------------------------------------
