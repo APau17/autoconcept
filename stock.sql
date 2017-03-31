@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
         # Keys
         Contact_id               Int,
         Categorie_id             Int,
-        unite                    Int,
+        Unite_id                 Int,
         PRIMARY KEY (id),
 
         # Constaints
