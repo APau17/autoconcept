@@ -107,6 +107,20 @@ class Vehicule < Struct.new(:id,
   end
 end
 
+class Emplacement < Struct.new(:id,
+                            :parent_id,
+                        )
+
+  def initialize(id = 0, parent_id = 0)
+    self.id = id
+    self.parent_id = parent_id
+  end
+
+  def next
+    Emplacement.new(seld.id + 1)
+  end
+end
+
 class Hash
   def to_sql_insert
     str = "INSERT INTO TABLE ("
@@ -135,5 +149,9 @@ class Hash
   end
 end
 
-puts Piece.new.to_h.to_sql_insert
-puts Vehicule.new.to_h.to_sql_insert
+#puts Piece.new.to_h.to_sql_insert
+#puts Vehicule.new.to_h.to_sql_insert
+
+(1..10).each do |id|
+  puts Emplacement.new.to_h.to_sql_insert
+end
