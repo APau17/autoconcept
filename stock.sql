@@ -40,9 +40,6 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
         prixUnitaire             DECIMAL(15, 2) NOT NULL
         COMMENT 'En euros. Il ne peut pas etre inferieur a zero',
 
-        unite                    Varchar (25) NOT NULL
-        COMMENT '',
-
         restriction              Text
         COMMENT 'Commentaire libre',
 
@@ -67,6 +64,7 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
         # Keys
         Contact_id               Int,
         Categorie_id             Int,
+        unite                    Int,
         PRIMARY KEY (id),
 
         # Constaints
