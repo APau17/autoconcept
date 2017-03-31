@@ -321,7 +321,7 @@ lots = []
 pieces.each do |piece|
   piece_by_lot = r.rand(0...100)
   (0..piece_by_lot).each do |j|
-    lots.push Lot.new(j, piece.id, emplacements.sample.id, unites.sample.id)
+    lots.push Lot.new(piece.id + j, piece.id, emplacements.sample.id, unites.sample.id)
   end
 end
 
