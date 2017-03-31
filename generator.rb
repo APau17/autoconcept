@@ -107,9 +107,89 @@ class Vehicule < Struct.new(:id,
   end
 end
 
+class Emplacement < Struct.new(:id,
+                            :nom,
+                            :parent_id,
+                        )
+
+  def initialize(id = 0, parent_id = 0)
+    self.id = id
+    self.nom = Faker::Lorem.word
+    self.parent_id = parent_id
+  end
+
+  def next
+    Emplacement.new(seld.id + 1)
+  end
+end
+
+class Contact < Struct.new(:id,
+                            :nom,
+                            :prenom,
+                            :sexe,
+                            :dateNaiss,
+                            :adresse,
+                            :ville,
+                            :code_postal
+                        )
+
+  def initialize(id = 0, parent_id = 0)
+    self.id = id
+    self.nom = Faker::Name.last_name
+    self.prenom = Faker::Name.first_name
+    self.sexe = [0, 1].sample
+    self.dateNaiss = Faker::Time.between(DateTime.new(1970), DateTime.now).to_date.iso8601
+    self.adresse = Faker::Address.street_address
+    self.ville = Faker::Address.city
+    self.code_postal = Faker::Address.zip_code
+  end
+
+  def next
+    Contact.new(seld.id + 1)
+  end
+end
+
+class Entreprise < Struct.new(:id,
+                              :raisonSociale,
+                              :siret,
+                              :siegeSocial,
+                              :codePostal,
+                              :ville,
+                        )
+
+  def initialize(id = 0)
+    self.id = id
+    self.raisonSociale = Faker::Company.name
+    self.siret = Faker::Company.ein
+    self.siegeSocial = Faker::Address.street_address
+    self.codePostal = Faker::Address.zip
+    self.ville = Faker::Address.city
+  end
+
+  def next
+    Entrepsie.new(seld.id + 1)
+  end
+end
+
+class Salarie < Struct.new(:id,
+                           :dateEmbauche,
+                           :service
+                        )
+
+  def initialize(id = 0)
+    self.id = id
+    self.dateEmbauche = Faker::Time.between(DateTime.new(1970), DateTime.now).to_date.iso8601
+    self.service = Faker::Commerce.department(1, true)
+  end
+
+  def next
+    Entrepsie.new(seld.id + 1)
+  end
+end
+
 class Hash
-  def to_sql_insert
-    str = "INSERT INTO TABLE ("
+  def to_sql_insert(table)
+    str = "INSERT INTO #{table} ("
 
     self.each do |field, value|
       str += "#{field.to_s}, " if not value.nil?
@@ -135,5 +215,15 @@ class Hash
   end
 end
 
-puts Piece.new.to_h.to_sql_insert
-puts Vehicule.new.to_h.to_sql_insert
+#puts Piece.new.to_h.to_sql_insert
+#puts Vehicule.new.to_h.to_sql_insert("Voiture_client")
+
+#(1..10).each do |level|
+  #(1..10).each do |id|
+    #puts Emplacement.new(id, level).to_h.to_sql_insert("Emplacement")
+  #end
+#end
+
+(1..100).each do |level|
+  puts Salarie.new.to_h.to_sql_insert("Fiche_salarie")
+end

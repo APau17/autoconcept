@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS Bon_de_commande (
         id int (11) Auto_increment NOT NULL,
 
         dateCreation Date
-        COMMENT 'Si non null, alors la commande est engage',
+        COMMENT 'Si non null, alors la commande est engagee',
 
         dateAchat    Date
         COMMENT 'Si non null, alors la commande peut etre livree',
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Litige  (
         dateLitige         Date ,
         commentaire        Varchar (25) ,
         Bon_de_commande_id Int ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -57,13 +57,12 @@ CREATE TABLE IF NOT EXISTS Emplacement  (
 
 CREATE TABLE IF NOT EXISTS Ligne_de_commande  (
         id                 int (11) Auto_increment  NOT NULL ,
-        prixUnitaire       Float ,
+        prixUnitaire       Float (15, 2) ,
         quantite_commandee Int ,
         quantite_livree    Int ,
         Bon_de_commande_id Int ,
-        id_Bon_de_commande Int ,
         Modele_de_piece_id Int ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 

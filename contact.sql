@@ -1,14 +1,4 @@
 #------------------------------------------------------------
-# Table: Client
-#------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS Client  (
-        id Int NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: Voiture client
 #------------------------------------------------------------
 
@@ -21,30 +11,20 @@ CREATE TABLE IF NOT EXISTS Voiture_client  (
         PRIMARY KEY (id )
 )ENGINE=InnoDB;
 
-
-#------------------------------------------------------------
-# Table: Fournisseur
-#------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS Fournisseur  (
-        id Int NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
-
 #------------------------------------------------------------
 # Table: Contact
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Contact  (
-        id          int (11) Auto_increment  NOT NULL ,
-        nom         Varchar (25) ,
-        prenom      Varchar (25) ,
-        sexe        Varchar (25) ,
+        id          int (11) Auto_increment  NOT NULL,
+        nom         Varchar (50) ,
+        prenom      Varchar (50) ,
+        sexe        Int,
         dateNaiss   Date ,
-        adresse     Varchar (25) ,
-        ville       Varchar (25) ,
-        code_postal Varchar (25) ,
-        PRIMARY KEY (id )
+        adresse     Varchar (50) ,
+        ville       Varchar (50) ,
+        code_postal Varchar (9) ,
+        PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -54,11 +34,11 @@ CREATE TABLE IF NOT EXISTS Contact  (
 
 CREATE TABLE IF NOT EXISTS Entreprise  (
         id            int (11) Auto_increment  NOT NULL ,
-        raisonSociale Varchar (25) ,
-        siret         Varchar (25) ,
-        siegeSocial   Varchar (25) ,
-        codePostal    Varchar (25) ,
-        ville         Varchar (25) ,
+        raisonSociale Varchar (50) ,
+        siret         Varchar (50) ,
+        siegeSocial   Varchar (50) ,
+        codePostal    Varchar (9) ,
+        ville         Varchar (50) ,
         PRIMARY KEY (id )
 )ENGINE=InnoDB;
 
