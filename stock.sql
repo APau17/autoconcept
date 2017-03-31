@@ -40,11 +40,8 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
         prixUnitaire             DECIMAL(15, 2) NOT NULL
         COMMENT 'En euros. Il ne peut pas etre inferieur a zero',
 
-        unite                    Varchar (25) NOT NULL
-        COMMENT '',
-
         restriction              Text
-        COMMENT '',
+        COMMENT 'Commentaire libre',
 
         compatibiliteApplication Text
         COMMENT 'Commentaire libre',
@@ -55,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
         fichePdf                 Varchar (250) UNIQUE
         COMMENT 'URL vers la documentation',
 
-        referanceConstructor     Varchar (25)
+        referanceConstructor     Varchar (25) UNIQUE
         COMMENT 'Le format est libre',
 
         lft                      Int NOT NULL
@@ -67,6 +64,7 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
         # Keys
         Contact_id               Int,
         Categorie_id             Int,
+        Unite_id                 Int,
         PRIMARY KEY (id),
 
         # Constaints
@@ -78,9 +76,9 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Lot_Emplacement  (
-        id             Int NOT NULL ,
-        Emplacement_id Int NOT NULL ,
-        PRIMARY KEY (id ,Emplacement_id )
+        id             Int NOT NULL,
+        Emplacement_id Int NOT NULL,
+        PRIMARY KEY (id, Emplacement_id)
 )ENGINE=InnoDB;
 
 #------------------------------------------------------------
@@ -88,7 +86,7 @@ CREATE TABLE IF NOT EXISTS Lot_Emplacement  (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Compatibilite  (
-        id                   Int NOT NULL ,
-        Modele_de_voiture_id Int NOT NULL ,
-        PRIMARY KEY (id ,Modele_de_voiture_id )
+        id                   Int NOT NULL,
+        Modele_de_voiture_id Int NOT NULL,
+        PRIMARY KEY (id, Modele_de_voiture_id)
 ) ENGINE=InnoDB;
