@@ -10,15 +10,11 @@ CREATE TABLE IF NOT EXISTS Lot  (
         quantite           Varchar (25) NOT NULL
         COMMENT 'Ne peut pas etre inferieur a zero',
 
-        unite              Varchar (25) NOT NULL,
-
-        Modele_de_piece_id Int,
-
         # Keys
+        Emplacement_id Int,
+        Modele_de_piece_id Int,
+        Unite_id Int,
         PRIMARY KEY (id),
-
-        # Constraints
-        CHECK(quantite > 0)
 ) ENGINE=InnoDB;
 
 #------------------------------------------------------------

@@ -15,16 +15,16 @@ CREATE TABLE IF NOT EXISTS Bon_de_commande (
         COMMENT 'Si non null, alors la commande est finalisee',
 
         remise       DECIMAL (3, 2)
-        COMMENT 'Pourcentage'
+        COMMENT 'Pourcentage',
 
         # Keys
         Contact_Fournisseur_id Int,
         Contact_Client_id Int,
         Litige_id Int,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id),
 
         # Constraints
-        CHECK(remise > 0 AND remise < 1),
+        CHECK(remise > 0 AND remise < 1)
 ) ENGINE=InnoDB;
 
 #------------------------------------------------------------
@@ -32,22 +32,15 @@ CREATE TABLE IF NOT EXISTS Bon_de_commande (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Litige  (
-        id                 int (11) Auto_increment  NOT NULL ,
-        dateLitige         Date ,
-        commentaire        Varchar (25) ,
-        Bon_de_commande_id Int ,
-        PRIMARY KEY (id)
-)ENGINE=InnoDB;
+        id                 int (11) Auto_increment  NOT NULL,
 
+        dateLitige         Date,
 
-#------------------------------------------------------------
-# Table: Emplacement
-#------------------------------------------------------------
+        commentaire        Text
+        COMMENT 'Commentaire libre',
 
-CREATE TABLE IF NOT EXISTS Emplacement  (
-        id  int (11) Auto_increment  NOT NULL ,
-        nom int (11) Auto_increment  ,
-        parent_id int(11),
+        # Keys
+        Bon_de_commande_id Int,
         PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
@@ -56,12 +49,16 @@ CREATE TABLE IF NOT EXISTS Emplacement  (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Ligne_de_commande  (
-        id                 int (11) Auto_increment  NOT NULL ,
-        prixUnitaire       Float (15, 2) ,
-        quantite_commandee Int ,
-        quantite_livree    Int ,
-        Bon_de_commande_id Int ,
-        Modele_de_piece_id Int ,
+        id                 int (11) Auto_increment  NOT NULL,
+
+        prixUnitaire       DECIMAL (15, 2),
+
+        quantiteCommandee Int,
+        quantiteLivree    Int,
+
+        # Keys
+        Bon_de_commande_id Int,
+        Modele_de_piece_id Int,
         PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
