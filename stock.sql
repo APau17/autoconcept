@@ -15,9 +15,6 @@ CREATE TABLE IF NOT EXISTS Lot  (
         Modele_de_piece_id Int,
         Unite_id Int,
         PRIMARY KEY (id),
-
-        # Constraints
-        CHECK(quantite > 0)
 ) ENGINE=InnoDB;
 
 #------------------------------------------------------------
