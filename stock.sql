@@ -3,7 +3,7 @@
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Lot  (
-        id                 int (11) Auto_increment  NOT NULL,
+        id                 int (11) Auto_increment PRIMARY KEY  NOT NULL,
 
         numeroFournisseur  Varchar (50) UNIQUE,
 
@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS Lot  (
         Emplacement_id Int,
         Modele_de_piece_id Int,
         Unite_id Int,
-        PRIMARY KEY (id),
 ) ENGINE=InnoDB;
 
 #------------------------------------------------------------
@@ -22,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Lot  (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Modele_de_piece  (
-        id                       Int Auto_increment  NOT NULL,
+        id                       Int Auto_increment PRIMARY KEY  NOT NULL,
 
         nom                      Varchar (50) NOT NULL UNIQUE
         COMMENT '',
@@ -61,7 +60,6 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
         Contact_id               Int,
         Categorie_id             Int,
         Unite_id                 Int,
-        PRIMARY KEY (id),
 
         # Constaints
         CHECK(prixUnitaire > 0.00)
@@ -72,13 +70,12 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Emplacement  (
-        id Int NOT NULL,
+        id Int PRIMARY KEY NOT NULL,
         nom Varchar(50),
 
         # Keys
         parent_id Int NOT NULL
         COMMENT 'Recursive emplacement',
-        PRIMARY KEY (id, parent_id)
 )ENGINE=InnoDB;
 
 #------------------------------------------------------------

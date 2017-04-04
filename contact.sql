@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS Contact (
 
         dateNaiss Date
         COMMENT 'Date de naissance',
+		
+		courriel Varchar (50),
 
         #Constraints
         CONSTRAINT discriminant UNIQUE(nom, prenom, dateNaiss)
@@ -71,6 +73,7 @@ CREATE TABLE IF NOT EXISTS Voiture_client (
         # FK
         Contact_id Int NOT NULL,
 		Contact_id Int,
+		COMMENT 'propriétaire actuel et propriétaire précédent'
         Modele_de_voiture_id Int,
         FOREIGN KEY (Contact_id) REFERENCES Contact(id),
         FOREIGN KEY (Modele_de_voiture_id) REFERENCES Modele_de_voiture(id) ON DELETE SET NULL
@@ -86,12 +89,14 @@ CREATE TABLE IF NOT EXISTS Entreprise (
 
         raisonSociale Varchar (50) NOT NULL,
         siret         Varchar (14) NOT NULL,
+		courriel	  Varchar (50) NOT NULL,
+		logo		  Text,
 		
         parent_id Int
-        COMMENT 'Recursive Entreprise',
+        COMMENT 'Recursive Entreprise pour les succursales',
 		
         #FK
-    	Adresse_id int,
+    	Adresse_id int NOT NULL,
         FOREIGN KEY (Adresse_id) REFERENCES Adresse(id)
 );
 
