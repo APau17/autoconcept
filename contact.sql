@@ -32,10 +32,10 @@ CREATE TABLE IF NOT EXISTS Adresse (
         ville Varchar (50) NOT NULL,
         code_postal Varchar (9) NOT NULL,
 
-        #FK
-    	Contact_id int NOT NULL,
-        FOREIGN KEY (Contact_id) REFERENCES Contact(id) ON DELETE CASCADE
-) COMMENT "Une addresse est n'est pas unique. Elle est associee a un contact.";
+		#Constraints
+        CONSTRAINT discriminant UNIQUE(adresse, ville, code_postal)
+        COMMENT "L'alliance d'une adresse, d'une ville et d'un code postal doit etre unique"
+)
 
 
 #------------------------------------------------------------
@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS Voiture_client (
 
         # FK
         Contact_id Int NOT NULL,
+		Contact_id Int,
         Modele_de_voiture_id Int,
         FOREIGN KEY (Contact_id) REFERENCES Contact(id),
         FOREIGN KEY (Modele_de_voiture_id) REFERENCES Modele_de_voiture(id) ON DELETE SET NULL
@@ -85,7 +86,10 @@ CREATE TABLE IF NOT EXISTS Entreprise (
 
         raisonSociale Varchar (50) NOT NULL,
         siret         Varchar (14) NOT NULL,
-
+		
+        parent_id Int
+        COMMENT 'Recursive Entreprise',
+		
         #FK
     	Adresse_id int,
         FOREIGN KEY (Adresse_id) REFERENCES Adresse(id)
@@ -114,10 +118,23 @@ CREATE TABLE IF NOT EXISTS Fiche_salarie  (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Contact_Entreprise  (
-        id Int,
-        Contact_id Int,
-        Entreprise_id Int,
+        id Int Auto_increment PRIMARY KEY,
+        Contact_id Int NOT NULL,
+        Entreprise_id Int NOT NULL,
 
         FOREIGN KEY (Contact_id) REFERENCES Contact(id),
         FOREIGN KEY (Entreprise_id) REFERENCES Entreprise(id)
+);
+
+#------------------------------------------------------------
+# Table: Contact_Adresse
+#------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS Contact_Adresse  (
+        id Int Auto_increment PRIMARY KEY,
+        Contact_id Int NOT NULL,
+        Adresse_id Int NOT NULL,
+
+        FOREIGN KEY (Contact_id) REFERENCES Contact(id),
+        FOREIGN KEY (Adresse_id) REFERENCES Adresse(id)
 );
