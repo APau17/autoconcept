@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS Fiche_salarie  (
         #FK
     	Contact_id int NOT NULL,
         Partenaire_id int NOT NULL,
-        FOREIGN KEY (Partenaire_id) REFERENCES Partenaire(id)
+        FOREIGN KEY (Partenaire_id) REFERENCES Partenaire(id),
         FOREIGN KEY (Contact_id) REFERENCES Contact(id)
 );
 
