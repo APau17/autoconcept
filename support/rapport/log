@@ -1,0 +1,400 @@
+commit 447ce65e059946d5e2f16c7d03913fb12a957546
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Sun Apr 9 22:59:53 2017 +0200
+
+    Modification du module CRM (#1)
+
+commit 8028a1104d7078f23de0b38c78b143bc4c9b11a1
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Sun Apr 9 19:40:00 2017 +0200
+
+    resolve
+
+commit 8ce92a57dd9e4235bcd51c9e22483ee0b67e90d7
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Sun Apr 9 19:38:18 2017 +0200
+
+    resolve
+
+commit 4285314e8d43f40aab0f65384ee3c282defab9dd
+Merge: 7711dcd ff103af
+Author: Mathias64 <m.devaux64@gmail.com>
+Date:   Tue Apr 4 11:47:47 2017 +0200
+
+    Merge pull request #23 from Izanami/contact
+    
+    Champs NULL sur FK, Historique prop/voiture, Email et logo sur contac…
+
+commit ff103af9cf1baf1c5cc74cd65023f8042dac958a
+Author: Mathias64 <m.devaux64@gmail.com>
+Date:   Tue Apr 4 11:46:03 2017 +0200
+
+    Champs NULL sur FK, Historique prop/voiture, Email et logo sur contacts, syntaxe PK sur stock
+
+commit 7711dcd15f5f57fb11764568f950b57c1a148649
+Merge: 52584af 54f51b9
+Author: Mathias64 <m.devaux64@gmail.com>
+Date:   Tue Apr 4 11:26:59 2017 +0200
+
+    Merge pull request #22 from Izanami/contact
+    
+    modification contact
+
+commit 54f51b9da483a8e4579d71b08a3ae5bc9b1141f9
+Author: Mathias64 <m.devaux64@gmail.com>
+Date:   Tue Apr 4 11:24:25 2017 +0200
+
+    modification contact
+
+commit 52584af0bebbc16bd82c6faec8bcf9c416759d76
+Merge: 516c4dc af087b8
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Tue Apr 4 01:03:47 2017 +0200
+
+    Merge pull request #21 from Izanami/generator
+    
+    Generator
+
+commit af087b873d4ce7a077a8b0cdf5b8362ae4c47024
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Tue Apr 4 01:01:04 2017 +0200
+
+    Clean contacts tables
+
+commit 3832a82562b0c5c0e506fb58049918b2979514f7
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Mon Apr 3 21:29:06 2017 +0200
+
+    Split generator
+
+commit 3fc3b16b7aa6bb8a11479a7458d3697d92bc1751
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 18:13:10 2017 +0200
+
+    Correct id to Lot generator
+
+commit 3cc2e090708f391d1037fde2aeacea5d77d605b5
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 18:14:31 2017 +0200
+
+    Generator
+
+commit 516c4dc8ac1838c2cd240d4447f97798eb67336d
+Merge: a08758c ec3272f
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 16:40:18 2017 +0200
+
+    Merge pull request #20 from kells64000/facturation
+    
+    ajout du ppt
+
+commit ec3272fdec8111f51c16677e42d073babfbce08b
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Fri Mar 31 16:27:58 2017 +0200
+
+    ajout du ppt
+
+commit a08758c3dd0c88a006daeb24b4b4eae678e138ab
+Merge: 2e56cec 7a6e528
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 15:09:02 2017 +0200
+
+    Merge branch 'stock'
+
+commit 2e56ceca308c7abd2f7e465fb0799cdcee225a42
+Merge: 9d26034 a69d960
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 15:08:55 2017 +0200
+
+    Merge branch 'comment'
+
+commit 7a6e528dee6f94b104a977c605a25a1632855d37
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 15:08:24 2017 +0200
+
+    Generator
+
+commit 9d26034bba69cd06bce24174dfe0ef1cf77e0fce
+Merge: 5c2d952 36c0d17
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 14:08:53 2017 +0200
+
+    Merge pull request #18 from kells64000/facturation
+    
+    fichier facturation a jour et categorie créé
+
+commit d1a8868694ab3f45f676898dcd978746070df6ba
+Merge: b91545d a69d960
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 12:46:23 2017 +0200
+
+    Merge branch 'comment' into 4-generator
+
+commit b91545d2f5fd793ad45444947ff5481646cb731b
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 12:46:11 2017 +0200
+
+    Emplacement generator (#4)
+
+commit a69d960c75093c9e4e255080c60aac348d7871e5
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 12:31:01 2017 +0200
+
+    Rename to lot_emplacement
+
+commit 36c0d171ed8697ac400091b39b99702593f949a9
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Fri Mar 31 12:19:13 2017 +0200
+
+    nouvelle table categorie
+
+commit 284bdbbe319d1857cc3e5112d0da1b280288fd4e
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 12:16:41 2017 +0200
+
+    Unity
+
+commit fb51cd22591ad0a37836423f2d7c81528996c9c9
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Fri Mar 31 12:03:12 2017 +0200
+
+    fichier facturation a jour et categorie créé
+
+commit 5c2d952e7858f5ce0d06b20a663d1988ceaee8c8
+Merge: 9de7c3c ae1815f
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 11:11:42 2017 +0200
+
+    Merge pull request #16 from kells64000/facturation
+    
+    Facturation
+
+commit 9de7c3c396e1f8d00d3bb506e56c07f6b94ce70f
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 11:58:38 2017 +0200
+
+    unity
+
+commit 503a6c26f87340cc38d3f820e7f2745a30321a4f
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 11:44:15 2017 +0200
+
+    Key unity
+
+commit ebf91cdb7fa0d851ecab1f086debd3b3b89f33fe
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 11:23:35 2017 +0200
+
+    Contact
+
+commit b768363bfcbc2f1ef38e1f11ab2b804eb026ecf3
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 10:58:48 2017 +0200
+
+    Rename mcd.sql to fk.sql
+
+commit b8554d6e058f578c2469550c6c153601928e97c4
+Merge: 98aacfe 3de829b
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 10:14:20 2017 +0200
+
+    Merge remote-tracking branch 'origin/comment'
+
+commit ae1815ffc9616da4e05ace99eaa97d14c9d05704
+Merge: 70d2a0e 7859965
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Fri Mar 31 10:04:54 2017 +0200
+
+    Merge branch 'master' into facturation
+
+commit 78599657cb0df38abfeb0192e0842054e3660d8f
+Merge: 2c9debf 079f270
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Fri Mar 31 10:03:49 2017 +0200
+
+    Merge branch 'Izanami/master'
+
+commit 079f2701f0f2dde98d5564be2c6e879d92fe6b79
+Merge: ae0bc82 b768363
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Fri Mar 31 10:02:26 2017 +0200
+
+    Merge branch 'master' of https://github.com/Izanami/autoconcept into Izanami/master
+
+commit ae0bc82e632fc1d3db9f773834625990ed47063d
+Merge: b8554d6 1f0d02a
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Fri Mar 31 10:00:00 2017 +0200
+
+    Merge remote-tracking branch 'refs/remotes/origin/master' into Izanami/master
+    
+    # Conflicts:
+    #       mcd.sql
+
+commit 70d2a0e5d78fc2a1b07ae49c75556eee4093ee9f
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Fri Mar 31 09:30:00 2017 +0200
+
+    ortographe modifié
+
+commit 2c9debf28f2e2e7b60ee42663dc4b88d5127a837
+Merge: 1f0d02a b8554d6
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Fri Mar 31 09:25:52 2017 +0200
+
+    Merge remote-tracking branch 'refs/remotes/Izanami/master'
+    
+    # Conflicts:
+    #       mcd.sql
+
+commit 3de829bca17afe94e02af866c3bd2c398cf7020d
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Fri Mar 31 00:23:11 2017 +0200
+
+    Nettoyage
+
+commit 98aacfee9d6090f31b1cab5e222615f2c6b0dcc1
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Thu Mar 30 22:54:29 2017 +0200
+
+    Generate piece and vehicule
+
+commit 1f0d02adad4999603dbf5ad7e7b1f9d9738aae6a
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 16:08:51 2017 +0200
+
+    enlever espace supperflu
+
+commit 404fabdc24d6fdb7b8f64b459b0f91d4759651c3
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 16:05:19 2017 +0200
+
+    pour toi public
+
+commit 1a7ede5d0dbc80f3635c66e5b5a5f77bbee53319
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 16:03:04 2017 +0200
+
+    enlever l'auto increment dans emplacement colonne nom
+    
+    je répare les erreurs du patron ! ^^'
+
+commit ecfb23d3328df97f0039c8da801a37dc334dcff8
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 14:53:28 2017 +0200
+
+    remise en ordre
+
+commit dd61984056b89ac0e4b9273e609fe4e32e513872
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 14:46:13 2017 +0200
+
+    bla
+
+commit fd3e349b44f3131bb8659117a288950da88383cc
+Merge: b0ebdb1 38c5742
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 14:42:17 2017 +0200
+
+    Merge remote-tracking branch 'refs/remotes/Izanami/master'
+    
+    # Conflicts:
+    #       mcd.sql
+
+commit 38c57420152e7b06c77d65d9932878ffe22e78b6
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Thu Mar 30 15:26:29 2017 +0200
+
+    Lot (#3)
+
+commit 25c06c42c281b42383e54bef40ca0c8f233305a9
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Thu Mar 30 15:04:42 2017 +0200
+
+    Commentaire sur les FK
+
+commit 16d1077edaf282560ca0d03c675bf0f9958b907b
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Thu Mar 30 14:46:37 2017 +0200
+
+    Change le moteur pour le modèle de pièce auto
+
+commit b0ebdb137d24f102d6095dcc053683472c1d8710
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 14:34:57 2017 +0200
+
+    fk renommé chef ! :p
+
+commit d4506e207bc92b88919137ba44c4d7c72505f07c
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Thu Mar 30 14:30:41 2017 +0200
+
+    Modèle de pièce
+
+commit 1895fdd781ccdcd753cf0420615dca3cf8372ea2
+Merge: 11b83d1 16d1077
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 13:58:05 2017 +0200
+
+    Merge remote-tracking branch 'refs/remotes/Izanami/master'
+
+commit c18ed8d1b0dbdf8242bbf6655a98ffdb5e11d5fd
+Merge: 0eb93b0 6e12e9f
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Thu Mar 30 13:31:19 2017 +0200
+
+    Merge branch 'master' of https://github.com/Izanami/autoconcept
+
+commit 0eb93b0a7ec661062e1006703d79d856c94a80fb
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Thu Mar 30 13:31:06 2017 +0200
+
+    Type dans modèle de pièce
+
+commit 55d26d7268964609a1ffc1a6661e672ff88c5a63
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Thu Mar 30 12:41:19 2017 +0200
+
+    Mcd
+
+commit 11b83d1367042025dc359df3673ba6a699392fa2
+Merge: f7d4d90 c18ed8d
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 12:35:19 2017 +0200
+
+    Merge remote-tracking branch 'refs/remotes/Izanami/master'
+
+commit f7d4d906226f454a96a6cc539c1f8f0b0acc8ed9
+Merge: 9b1059e 6e12e9f
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 12:32:58 2017 +0200
+
+    Merge remote-tracking branch 'refs/remotes/Izanami/master'
+
+commit d169ca7b1fc9db3c2f8e8b229bc2f1537fe3d534
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Thu Mar 30 12:29:06 2017 +0200
+
+    Initial commit
+
+commit 6e12e9ff03968202a7d33c2b3e0a60741a90f4a3
+Merge: 55d26d7 9b1059e
+Author: Adrien Jeser <adrien@jeser.me>
+Date:   Thu Mar 30 12:18:39 2017 +0200
+
+    Merge pull request #1 from kells64000/master
+    
+    renommage
+
+commit 9b1059eaa941e2bb4044bcf066167f316d6151d3
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 12:14:32 2017 +0200
+
+    rennomage table rel
+
+commit 5e6e6378e0707e34f88913f00044200740afa5fb
+Merge: d169ca7 55d26d7
+Author: kells64000 <kelian.bousquet@laposte.net>
+Date:   Thu Mar 30 11:46:15 2017 +0200
+
+    Merge remote-tracking branch 'refs/remotes/Izanami/master'
