@@ -1,4 +1,4 @@
-#------------------------------------------------------------
+﻿#------------------------------------------------------------
 # Table: Contact
 #------------------------------------------------------------
 
@@ -121,3 +121,34 @@ CREATE TABLE IF NOT EXISTS Contact_Entreprise  (
         FOREIGN KEY (Contact_id) REFERENCES Contact(id),
         FOREIGN KEY (Entreprise_id) REFERENCES Entreprise(id)
 );
+/*
+#------------------------------------------------------------
+# Table: Role
+#------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS Role  (
+        id Int Auto_increment PRIMARY KEY
+        COMMENT 'Clef primaire',
+
+        
+
+        #FK
+    	Contact_id int NOT NULL,
+        FOREIGN KEY (Contact_id) REFERENCES Contact(id)
+);
+
+#------------------------------------------------------------
+# Table: Habilite
+#------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS Habilite  (
+        id Int Auto_increment PRIMARY KEY
+        COMMENT 'Clef primaire',
+
+        
+
+        #FK
+    	Contact_id int NOT NULL,
+        FOREIGN KEY (Contact_id) REFERENCES Contact(id)
+);
+*/
