@@ -35,6 +35,16 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
         FOREIGN KEY (Unite_id) REFERENCES Unite(id)
 );
 
+#------------------------------------------------------------
+# Table: Dépendance
+#------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS Dependance  (
+        Modele_de_piece_id Int NOT NULL,
+        Modele_de_piece_depend_id Int NOT NULL,
+        FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id),
+        FOREIGN KEY (Modele_de_piece_depend_id) REFERENCES Modele_de_piece(id)
+) ;
 
 #------------------------------------------------------------
 # Table: Emplacement
@@ -109,5 +119,5 @@ CREATE TABLE IF NOT EXISTS Compatibilite  (
 
         # Keys
         Modele_de_voiture_id Int NOT NULL,
-        FOREIGN KEY (Modele_de_piece_d) REFERENCES Modele_de_piece(id)
+        FOREIGN KEY (Modele_de_voiture_id) REFERENCES Modele_de_voiture(id)
 ) ;
