@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Litige  (
         dateLitige Date,
 
         commentaire Text
-        COMMENT 'Commentaire libre'
+        COMMENT 'Commentaire libre',
 
         # Keys
         Bon_de_commande_id_origine Int
