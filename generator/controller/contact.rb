@@ -6,7 +6,7 @@ partenaires = []
 addresses = []
 contacts = []
 companies = []
-contacts_addresses = []
+partenaires_adresses = []
 companies_addresses = []
 vehicules = []
 vehicules_clients = []
@@ -17,13 +17,11 @@ salaries = []
   addresses_id = addresses.length + 1
   addresses.push Address.new(addresses_id)
   companies.push Trade.new(i, addresses_id)
-  partenaire_id = partenaires.length + 1
-  partenaires.push Partenaire.new(partenaire_id, companies.last.id)
 end
 
 # Vehicule models
 (1..500).each do |i|
-  vehicules.push Vehicule.new(i, partenaires.sample.id)
+  vehicules.push Vehicule.new(i, companies.sample.id)
 end
 
 ## Company
@@ -39,19 +37,21 @@ end
 
   companies_id = companies.length + 1
   companies.push Entreprise.new(companies_id, addresses_id, company_parent_id)
-  partenaire_id = partenaires.length + 1
-  partenaires.push Partenaire.new(partenaire_id, companies.last.id)
 
   contacts_id = contacts.length
   contacts_by_company = r.rand(0...10)
 
   (0..contacts_by_company).each do ||
+
     contacts_id += 1
     contacts.push Contact.new(contacts_id)
 
+    partenaire_id = partenaires.length + 1
+    partenaires.push Partenaire.new(partenaire_id, contacts.last.id, companies.last.id, rand(1..6))
+
     addresses_id += 1
     addresses.push Address.new(addresses_id)
-    contacts_addresses.push ContactAddress.new(contacts.last.id, partenaires.last.id, addresses_id)
+    partenaires_adresses.push PartenaireAddress.new(partenaire_id, addresses_id)
 
     salaries_id = salaries.length
     if [true, false].sample
@@ -63,7 +63,7 @@ end
     vehicules_by_contact = r.rand(0...3)
     (0..vehicules_by_contact).each do ||
       vehicules_clients_id += 1
-      vehicules_clients.push VehiculeClient.new(vehicules_clients_id, contacts.last.id, vehicules.sample.id)
+      vehicules_clients.push VehiculeClient.new(vehicules_clients_id, partenaire_id, vehicules.sample.id)
     end
   end
 end
@@ -77,14 +77,15 @@ end
   addresses.push Address.new(addresses_id)
 
   partenaire_id = partenaires.length + 1
-  partenaires.push Partenaire.new(partenaire_id)
-  contacts_addresses.push ContactAddress.new(contacts.last.id, partenaires.last.id, addresses.last.id)
+  partenaires.push Partenaire.new(partenaire_id, contacts.last.id, nil, rand(1..6))
+
+  partenaires_adresses.push PartenaireAddress.new(partenaire_id, addresses_id)
 
   vehicules_clients_id = vehicules_clients.length
   vehicule_by_client = r.rand(0...10)
   (0..vehicule_by_client).each do ||
     vehicules_clients_id += 1
-    vehicules_clients.push VehiculeClient.new(vehicules_clients_id, contacts.last.id, vehicules.sample.id)
+    vehicules_clients.push VehiculeClient.new(vehicules_clients_id, partenaire_id, vehicules.sample.id)
   end
 end
 
@@ -109,8 +110,8 @@ vehicules.each do |vehicule|
   puts vehicule.to_h.to_sql_insert("Modele_de_voiture")
 end
 
-contacts_addresses.each do |contact_addresse|
-  puts contact_addresse.to_h.to_sql_insert("Contact_Adresse")
+partenaires_adresses.each do |partenaire_adresse|
+  puts partenaire_adresse.to_h.to_sql_insert("Partenaire_Adresse")
 end
 
 companies_addresses.each do |company_addresse|
