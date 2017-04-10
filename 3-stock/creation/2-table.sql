@@ -72,6 +72,27 @@ CREATE TABLE IF NOT EXISTS Lot  (
         FOREIGN KEY (Unite_id) REFERENCES Unite(id)
 ) ;
 
+#------------------------------------------------------------
+# Table: Mouvement
+#------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS Mouvement  (
+        id Int Auto_increment PRIMARY KEY
+        COMMENT 'Clef primaire',
+
+        dateMouvement Date,
+
+        # Keys
+        Emplacement_id Int NOT NULL
+        COMMENT 'Nouvelle emplacement du lot',
+
+        Lot_id Int NOT NULL,
+        Unite_id Int NOT NULL,
+        FOREIGN KEY (Emplacement_id) REFERENCES Emplacement(id),
+        FOREIGN KEY (Lot_id) REFERENCES Lot(id),
+        FOREIGN KEY (Unite_id) REFERENCES Unite(id)
+) ;
+
 
 #------------------------------------------------------------
 # Table: Compatibilité
