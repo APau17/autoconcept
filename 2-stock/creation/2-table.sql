@@ -41,8 +41,11 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Emplacement  (
-        id Int PRIMARY KEY NOT NULL,
+        id Int Auto_increment PRIMARY KEY
+        COMMENT 'Clef primaire',
+
         nom Varchar(50),
+        virtuel Boolean,
 
         # Keys
         parent_id Int NOT NULL
