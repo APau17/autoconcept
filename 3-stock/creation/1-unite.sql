@@ -3,7 +3,8 @@
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Unite  (
-        id int (11) Auto_increment  NOT NULL,
+        id Int Auto_increment PRIMARY KEY
+        COMMENT 'Clef primaire',
 
         nom Varchar (25) NOT NULL UNIQUE,
 
@@ -11,6 +12,5 @@ CREATE TABLE IF NOT EXISTS Unite  (
         COMMENT 'Ratio entre les unites',
 
         # Keys
-        Unite_base_id Int,
-        PRIMARY KEY (id)
-) ENGINE=InnoDB;
+        Unite_base_id Int
+);
