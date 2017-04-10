@@ -104,7 +104,10 @@ CREATE TABLE IF NOT EXISTS Mouvement  (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Compatibilite  (
-        id                   Int NOT NULL,
+        id Int Auto_increment PRIMARY KEY
+        COMMENT 'Clef primaire',
+
+        # Keys
         Modele_de_voiture_id Int NOT NULL,
-        PRIMARY KEY (id, Modele_de_voiture_id)
+        FOREIGN KEY (Modele_de_piece_d) REFERENCES Modele_de_piece(id)
 ) ;
