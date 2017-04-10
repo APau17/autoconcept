@@ -1,0 +1,19 @@
+I- Contexte 
+II - Etude de l'existant / Expression des besoins
+
+acteurs (nom) /rôles
+
+Réel --> Problèmes
+
+III - Contraintes Techniques
+IV - Solutions
+
+3 : - moindre = mise en avant des moyens
+    - medium
+    - haute / luxe = mise en avant du coût
+
+Tableau racines : 6 axes (stratégie, organisation, humain, technique, financier, qualité)
+
+V - Solution retenue
+
+VI - Plan d'action
