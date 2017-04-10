@@ -143,9 +143,9 @@ CREATE TABLE IF NOT EXISTS Voiture_client (
         COMMENT "Si null, proprietaire actuelle. Sinon nouveau proprietaire.",
 
         # FK
-        Contact_id Int NOT NULL,
+        Partenaire_id Int NOT NULL,
         Modele_de_voiture_id Int,
-        FOREIGN KEY (Contact_id) REFERENCES Contact(id),
+        FOREIGN KEY (Partenaire_id) REFERENCES Partenaire(id),
         FOREIGN KEY (Modele_de_voiture_id) REFERENCES Modele_de_voiture(id)
 );
 
