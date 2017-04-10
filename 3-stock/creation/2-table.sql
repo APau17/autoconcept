@@ -83,14 +83,16 @@ CREATE TABLE IF NOT EXISTS Mouvement  (
         dateMouvement Date,
 
         # Keys
-        Emplacement_id Int NOT NULL
+        parent_id Int NOT NULL
         COMMENT 'Nouvelle emplacement du lot',
 
+        Emplacement_id Int NOT NULL,
         Lot_id Int NOT NULL,
-        Unite_id Int NOT NULL,
+        Partenaire_id Int NOT NULL,
+
         FOREIGN KEY (Emplacement_id) REFERENCES Emplacement(id),
         FOREIGN KEY (Lot_id) REFERENCES Lot(id),
-        FOREIGN KEY (Unite_id) REFERENCES Unite(id)
+        FOREIGN KEY (Partenaire_id) REFERENCES Partenaire(id)
 ) ;
 
 
