@@ -164,10 +164,8 @@ CREATE TABLE IF NOT EXISTS Fiche_salarie  (
         service Varchar (25),
 
         #FK
-    	Contact_id int NOT NULL,
         Partenaire_id int NOT NULL,
-        FOREIGN KEY (Partenaire_id) REFERENCES Partenaire(id),
-        FOREIGN KEY (Contact_id) REFERENCES Contact(id)
+        FOREIGN KEY (Partenaire_id) REFERENCES Partenaire(id)
 );
 
 #------------------------------------------------------------
