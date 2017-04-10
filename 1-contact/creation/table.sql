@@ -135,6 +135,9 @@ CREATE TABLE IF NOT EXISTS Voiture_client (
         immatriculation Varchar (25),
         dateMiseEnCirculation Date,
 
+        dateCreation DATETIME DEFAULT CURRENT_TIMESTAMP,
+        dateModification DATETIME DEFAULT CURRENT_TIMESTAMP,
+
         # Index
         INDEX immatriculation_index (immatriculation),
 
