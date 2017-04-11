@@ -32,20 +32,6 @@ class Contact < Struct.new(:id,
   end
 end
 
-class Droit < Struct.new(:id,
-                            :nom,
-                            :facturable,
-                            :livrable,
-                        )
-
-  def initialize(id, nom, factuable = nil, livrable = nil)
-    self.id = contact_id
-    self.nom = nom
-    self.facturable = factuable
-    self.livrable = livrable
-  end
-end
-
 class Address < Struct.new(:id,
                             :adresse,
                             :ville,
