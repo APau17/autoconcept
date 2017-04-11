@@ -176,6 +176,9 @@ CREATE TABLE IF NOT EXISTS Partenaire_Adresse  (
         Adresse_id Int NOT NULL,
         Partenaire_id Int NOT NULL,
 
+        dateCreation DATETIME DEFAULT CURRENT_TIMESTAMP,
+        dateModification DATETIME DEFAULT CURRENT_TIMESTAMP,
+
         FOREIGN KEY (Adresse_id) REFERENCES Adresse(id),
         FOREIGN KEY (Partenaire_id) REFERENCES Partenaire(id)
 );

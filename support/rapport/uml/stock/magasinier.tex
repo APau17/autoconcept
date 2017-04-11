@@ -1,0 +1,39 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+\usepackage{tikz}
+\usepackage{tikz-uml}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{umlsystem}[x=2]{Stock}
+        \umlusecase[name=commande, y=3]{Passer commande}
+        \umlusecase[name=prepare, y=1]{Préparer marchandise}
+        \umlusecase[name=livraison, y=-1]{Réception livraison}
+        \umlusecase[name=inventaire, y=-3]{Inventaire}
+        \umlusecase[name=fournisseur, x=6, y=3]{Commande fournisseur}
+        \umlusecase[name=move, x=6, y=0]{Mouvement de stock}
+        \umlusecase[name=stock, x=12]{Consulter le stock}
+    \end{umlsystem}
+
+    \umlactor[x=-4]{Magasinier}
+
+    \umlassoc{Magasinier}{commande}
+    \umlassoc{Magasinier}{prepare}
+    \umlassoc{Magasinier}{livraison}
+    \umlassoc{Magasinier}{inventaire}
+
+    \umlextend{commande}{fournisseur}
+    \umlHVinclude{prepare}{move}
+    \umlHVinclude{livraison}{move}
+
+    \umlinclude{move}{stock}
+    \umlHVinclude{inventaire}{stock}
+    \umlHVinclude{commande}{stock}
+\end{tikzpicture}
+
+\end{document}

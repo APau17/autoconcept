@@ -35,14 +35,27 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
         FOREIGN KEY (Unite_id) REFERENCES Unite(id)
 );
 
+#------------------------------------------------------------
+# Table: Dépendance
+#------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS Dependance  (
+        Modele_de_piece_id Int NOT NULL,
+        Modele_de_piece_id_dependre Int NOT NULL,
+        FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id),
+        FOREIGN KEY (Modele_de_piece_id_dependre) REFERENCES Modele_de_piece(id)
+) ;
 
 #------------------------------------------------------------
 # Table: Emplacement
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Emplacement  (
-        id Int PRIMARY KEY NOT NULL,
+        id Int Auto_increment PRIMARY KEY
+        COMMENT 'Clef primaire',
+
         nom Varchar(50),
+        virtuel Boolean,
 
         # Keys
         parent_id Int NOT NULL
@@ -83,14 +96,16 @@ CREATE TABLE IF NOT EXISTS Mouvement  (
         dateMouvement Date,
 
         # Keys
-        Emplacement_id Int NOT NULL
+        parent_id Int NOT NULL
         COMMENT 'Nouvelle emplacement du lot',
 
+        Emplacement_id Int NOT NULL,
         Lot_id Int NOT NULL,
-        Unite_id Int NOT NULL,
+        Partenaire_id Int NOT NULL,
+
         FOREIGN KEY (Emplacement_id) REFERENCES Emplacement(id),
         FOREIGN KEY (Lot_id) REFERENCES Lot(id),
-        FOREIGN KEY (Unite_id) REFERENCES Unite(id)
+        FOREIGN KEY (Partenaire_id) REFERENCES Partenaire(id)
 ) ;
 
 
@@ -99,7 +114,10 @@ CREATE TABLE IF NOT EXISTS Mouvement  (
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Compatibilite  (
-        id                   Int NOT NULL,
+        id Int Auto_increment PRIMARY KEY
+        COMMENT 'Clef primaire',
+
+        # Keys
         Modele_de_voiture_id Int NOT NULL,
-        PRIMARY KEY (id, Modele_de_voiture_id)
+        FOREIGN KEY (Modele_de_voiture_id) REFERENCES Modele_de_voiture(id)
 ) ;
