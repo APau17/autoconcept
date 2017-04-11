@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
 
 CREATE TABLE IF NOT EXISTS Dependance  (
         Modele_de_piece_id Int NOT NULL,
-        Modele_de_piece_depend_id Int NOT NULL,
+        Modele_de_piece_id_dependre Int NOT NULL,
         FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id),
-        FOREIGN KEY (Modele_de_piece_depend_id) REFERENCES Modele_de_piece(id)
+        FOREIGN KEY (Modele_de_piece_id_dependre) REFERENCES Modele_de_piece(id)
 ) ;
 
 #------------------------------------------------------------

@@ -42,13 +42,11 @@ CREATE TABLE IF NOT EXISTS Bon_de_commande (
 
         # Keys
         Partenaire_Fournisseur_id Int NOT NULL,
-        Partenaire_Client_id Int NOT NULL,
-        Partenaire_Client_Facturation_id Int,
-        Partenaire_Client_Livraison_id Int,
+        Partenaire_Client_id_Facturation Int,
+        Partenaire_Client_id_Livraison Int,
         FOREIGN KEY (Partenaire_Fournisseur_id) REFERENCES Partenaire(id),
-        FOREIGN KEY (Partenaire_Client_id) REFERENCES Partenaire(id),
-        FOREIGN KEY (Partenaire_Client_Facturation_id) REFERENCES Partenaire(id),
-        FOREIGN KEY (Partenaire_Client_Livraison_id) REFERENCES Partenaire(id)
+        FOREIGN KEY (Partenaire_Client_id_Facturation) REFERENCES Partenaire(id),
+        FOREIGN KEY (Partenaire_Client_id_Livraison) REFERENCES Partenaire(id)
 );
 
 #------------------------------------------------------------
