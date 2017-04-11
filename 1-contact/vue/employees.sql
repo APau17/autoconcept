@@ -1,1 +1,3 @@
 CREATE VIEW liste_employees AS SELECT nom,prenom,dateNaiss,courriel,telephone,Entreprise_id FROM Partenaire INNER JOIN Contact ON Contact.id=Partenaire.Contact_id;
+CREATE VIEW liste_employees_autoconcept AS SELECT nom,prenom,dateNaiss,courriel,telephone FROM Partenaire INNER JOIN Parametre v ON v.clef="Entreprise" INNER JOIN Partenaire p ON p.Entreprise_id=v.valeur INNER JOIN Contact ON Contact.id=p.Contact_id;
+CREATE VIEW liste_employees_autoconcept_filiale AS SELECT nom,prenom,dateNaiss,courriel,telephone FROM Partenaire INNER JOIN Parametre v ON v.clef = "Entreprise" INNER JOIN Entreprise ON Entreprise.parent_id=v.valeur INNER JOIN Partenaire p ON Partenaire.Entreprise_id=Entreprise.id INNER JOIN Contact ON Contact.id = p.Contact_id;
