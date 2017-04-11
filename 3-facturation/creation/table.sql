@@ -6,6 +6,9 @@ CREATE TABLE IF NOT EXISTS Prix (
         id Int Auto_increment PRIMARY KEY
         COMMENT 'Clef primaire',
 
+        prixUnitaire DECIMAL(15, 2) NOT NULL
+        COMMENT 'En euros. Il ne peut pas etre inferieur a zero',
+
         marge FLOAT NOT NULL,
 
         dateCreation DATETIME DEFAULT CURRENT_TIMESTAMP,
