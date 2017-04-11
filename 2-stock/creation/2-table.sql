@@ -1,5 +1,5 @@
 #------------------------------------------------------------
-# Table: Modèle de pièce
+# Table: Modèle_de_pièce
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Modele_de_piece  (
