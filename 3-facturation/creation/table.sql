@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Prix (
 );
 
 #------------------------------------------------------------
-# Table: Bon de commande
+# Table: Bon_de_commande
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Bon_de_commande (
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS Litige  (
 );
 
 #------------------------------------------------------------
-# Table: Ligne de commande
+# Table: Ligne_de_commande
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Ligne_de_commande  (

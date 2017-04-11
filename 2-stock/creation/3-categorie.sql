@@ -1,5 +1,5 @@
 #------------------------------------------------------------
-# Table: Categorie Piece
+# Table: Categorie_Piece
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Categorie_piece (

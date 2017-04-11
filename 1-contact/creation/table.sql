@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS Partenaire (
 );
 
 #------------------------------------------------------------
-# Table: Modèle de voiture
+# Table: Modèle_de_voiture
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Modele_de_voiture (
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS Modele_de_voiture (
 );
 
 #------------------------------------------------------------
-# Table: Voiture client
+# Table: Voiture_client
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Voiture_client (
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS Voiture_client (
 );
 
 #------------------------------------------------------------
-# Table: Fiche salarié
+# Table: Fiche_salarié
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Fiche_salarie  (
@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS Fiche_salarie  (
 
         dateEmbauche Date,
         service Varchar (25),
+		nomUtilisateurSql Varchar (50),
 
         #FK
         Partenaire_id int NOT NULL,
