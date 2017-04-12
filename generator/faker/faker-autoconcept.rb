@@ -33,7 +33,7 @@ module Faker
         "Rogue","Juke","Cube","Pathfiner","Versa","Altima"].sample
       end
 	  
-	  def imatriculation
+	  def immatriculation
 		Faker::Base.letterify("??") + "-" + Faker::Base.numerify("###") + "-" + Faker::Base.letterify("??")
 	  end
     end
@@ -46,7 +46,6 @@ module Faker
       end
     end
   end
-
 
   class Company < Base
     class << self
