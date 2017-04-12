@@ -19,6 +19,10 @@ module Faker
       def energy
       ["Gaz naturel compressé", "Diesel", "E-85/Essence", "Électrique", "Essence", "Essence Hybrid"].sample
       end
+	  
+	  def service
+	    ["Carrossier", "Mecanicien", "Magasinier", "Moteur et dependance", "Accesoires et entretien", "Habitacle"].sample
+	  end
 
       def model
         ["328i","M3","M5","X1","X3","X5",
