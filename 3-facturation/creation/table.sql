@@ -95,5 +95,6 @@ CREATE TABLE IF NOT EXISTS Ligne_de_commande  (
         # Keys
         Bon_de_commande_id Int NOT NULL,
         Prix_id Int NOT NULL,
+        FOREIGN KEY (Bon_de_commande_id) REFERENCES Bon_de_commande(id),
         FOREIGN KEY (Prix_id) REFERENCES Prix(id)
 );
