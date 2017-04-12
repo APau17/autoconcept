@@ -125,7 +125,7 @@ class Salarie < Struct.new(:id,
   def initialize(id, partenaire_id)
     self.id = id
     self.dateEmbauche = Faker::Time.between(DateTime.new(1970), DateTime.now).to_date.iso8601
-    self.service = Faker::Commerce.department(1, true)
+    self.service = Faker::Vehicule.service
     self.Partenaire_id = partenaire_id
   end
 end
