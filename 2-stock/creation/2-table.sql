@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Emplacement  (
         COMMENT 'Clef primaire',
 
         nom Varchar(50),
-        virtuel Boolean,
+        virtuel Boolean DEFAULT FALSE,
 
         # Keys
         parent_id Int NOT NULL
