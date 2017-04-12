@@ -12,9 +12,6 @@ CREATE TABLE IF NOT EXISTS Modele_de_piece  (
         designation Varchar (120)
         COMMENT '',
 
-        prixUnitaire DECIMAL(15, 2) NOT NULL
-        COMMENT 'En euros. Il ne peut pas etre inferieur a zero',
-
         restriction Text
         COMMENT 'Commentaire libre',
 
