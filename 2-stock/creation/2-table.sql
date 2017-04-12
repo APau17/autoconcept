@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS Emplacement  (
         id Int Auto_increment PRIMARY KEY
         COMMENT 'Clef primaire',
 
-        nom Varchar(50),
-        virtuel Boolean DEFAULT FALSE,
+        nom Varchar(50) NOT NULL,
+        virtuel Boolean DEFAULT FALSE NULL,
 
         # Keys
         parent_id Int NOT NULL
