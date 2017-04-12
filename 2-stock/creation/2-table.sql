@@ -116,5 +116,7 @@ CREATE TABLE IF NOT EXISTS Compatibilite  (
 
         # Keys
         Modele_de_voiture_id Int NOT NULL,
-        FOREIGN KEY (Modele_de_voiture_id) REFERENCES Modele_de_voiture(id)
+        Modele_de_piece_id Int NOT NULL,
+        FOREIGN KEY (Modele_de_voiture_id) REFERENCES Modele_de_voiture(id),
+        FOREIGN KEY (Modele_de_piece_id) REFERENCES Modele_de_piece(id)
 ) ;
