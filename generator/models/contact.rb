@@ -46,18 +46,6 @@ class Droit < Struct.new(:id,
   end
 end
 
-class PartenaireContact < Struct.new(:Contact_id,
-                                     :Partenaire_id,
-                                     :Relation_id
-                        )
-
-  def initialize(contact_id, partenaire_id, relation_id)
-    self.Contact_id = contact_id
-    self.Partenaire_id = partenaire_id
-    self.Relation_id = relation_id
-  end
-end
-
 class Address < Struct.new(:id,
                             :adresse,
                             :ville,
@@ -80,18 +68,6 @@ class PartenaireAddress < Struct.new(
   def initialize(partenaire_id, address_id)
     self.Adresse_id = address_id
     self.Partenaire_id = partenaire_id
-  end
-end
-
-class EntrepriseAddress < Struct.new(:Entreprise_id,
-                                     :Adresse_id,
-                                     :parent_id,
-                        )
-
-  def initialize(contact_id, address_id, parent_id = nil)
-    self.Entreprise_id = contact_id
-    self.Adresse_id = address_id
-    self.parent_id = parent_id
   end
 end
 
@@ -146,7 +122,7 @@ class Salarie < Struct.new(:id,
                            :Partenaire_id
                         )
 
-  def initialize(id, partenaire_id, contact_id)
+  def initialize(id, partenaire_id)
     self.id = id
     self.dateEmbauche = Faker::Time.between(DateTime.new(1970), DateTime.now).to_date.iso8601
     self.service = Faker::Commerce.department(1, true)
