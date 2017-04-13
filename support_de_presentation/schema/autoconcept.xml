@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="autoconcept" type="MySQL - 5.7.17">
+   <tables>
+      <table catalog="autoconcept" name="Adresse" numRows="52" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Adresse_id" foreignKey="Entreprise_ibfk_1" implied="false" onDeleteCascade="false" table="Entreprise"/>
+            <child catalog="autoconcept" column="Adresse_id" foreignKey="Partenaire_Adresse_ibfk_1" implied="false" onDeleteCascade="false" table="Partenaire_Adresse"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="adresse" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="ville" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="codePostal" nullable="false" remarks="" size="6" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="discriminant" unique="true">
+            <column ascending="true" name="adresse"/>
+            <column ascending="true" name="ville"/>
+            <column ascending="true" name="codePostal"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Bon_de_commande" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Bon_de_commande_id" foreignKey="Ligne_de_commande_ibfk_1" implied="false" onDeleteCascade="false" table="Ligne_de_commande"/>
+            <child catalog="autoconcept" column="Bon_de_commande_id_origine" foreignKey="Litige_ibfk_1" implied="false" onDeleteCascade="false" table="Litige"/>
+            <child catalog="autoconcept" column="Bon_de_commande_id_resolution" foreignKey="Litige_ibfk_2" implied="false" onDeleteCascade="false" table="Litige"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="dateCreation" nullable="true" remarks="Si non null, alors la commande est engagee" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="dateAchat" nullable="true" remarks="Si non null, alors la commande peut etre livree" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="3" name="dateLivraison" nullable="true" remarks="Si non null, alors la commande est finalisee" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="2" id="4" name="remise" nullable="true" remarks="Pourcentage" size="3" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="5" name="Partenaire_Fournisseur_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Bon_de_commande_ibfk_1" implied="false" onDeleteCascade="false" table="Partenaire"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="Partenaire_Client_id_Facturation" nullable="true" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Bon_de_commande_ibfk_2" implied="false" onDeleteCascade="false" table="Partenaire"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="7" name="Partenaire_Client_id_Livraison" nullable="true" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Bon_de_commande_ibfk_3" implied="false" onDeleteCascade="false" table="Partenaire"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Partenaire_Client_id_Facturation" unique="false">
+            <column ascending="true" name="Partenaire_Client_id_Facturation"/>
+         </index>
+         <index name="Partenaire_Client_id_Livraison" unique="false">
+            <column ascending="true" name="Partenaire_Client_id_Livraison"/>
+         </index>
+         <index name="Partenaire_Fournisseur_id" unique="false">
+            <column ascending="true" name="Partenaire_Fournisseur_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Categorie_piece" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="nom" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="lft" nullable="true" remarks="Minimal interval enfants" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="3" name="rgt" nullable="true" remarks="Maximal interval enfants" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="4" name="Modele_de_piece_id" nullable="true" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Categorie_piece_ibfk_1" implied="false" onDeleteCascade="false" table="Modele_de_piece"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Modele_de_piece_id" unique="false">
+            <column ascending="true" name="Modele_de_piece_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Compatibilite" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="Modele_de_voiture_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Compatibilite_ibfk_1" implied="false" onDeleteCascade="false" table="Modele_de_voiture"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="Modele_de_piece_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Compatibilite_ibfk_2" implied="false" onDeleteCascade="false" table="Modele_de_piece"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Modele_de_piece_id" unique="false">
+            <column ascending="true" name="Modele_de_piece_id"/>
+         </index>
+         <index name="Modele_de_voiture_id" unique="false">
+            <column ascending="true" name="Modele_de_voiture_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Contact" numRows="26" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Contact_id" foreignKey="Partenaire_ibfk_2" implied="false" onDeleteCascade="false" table="Partenaire"/>
+            <child catalog="autoconcept" column="Entreprise_id" foreignKey="Partenaire_ibfk_1" implied="false" onDeleteCascade="false" table="Partenaire"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="nom" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="prenom" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="sexe" nullable="true" remarks="0 pour les hommes. 1 pour les femmes" size="0" type="BIT"/>
+         <column autoUpdated="false" digits="0" id="4" name="dateNaiss" nullable="true" remarks="Date de naissance" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="5" name="courriel" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="telephone" nullable="true" remarks="Format avec dix chiffres sans delimiteur" size="10" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="discriminant" unique="true">
+            <column ascending="true" name="nom"/>
+            <column ascending="true" name="prenom"/>
+            <column ascending="true" name="dateNaiss"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Dependance" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="Modele_de_piece_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Dependance_ibfk_1" implied="false" onDeleteCascade="false" table="Modele_de_piece"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="Modele_de_piece_id_dependre" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Dependance_ibfk_2" implied="false" onDeleteCascade="false" table="Modele_de_piece"/>
+         </column>
+         <index name="Modele_de_piece_id" unique="false">
+            <column ascending="true" name="Modele_de_piece_id"/>
+         </index>
+         <index name="Modele_de_piece_id_dependre" unique="false">
+            <column ascending="true" name="Modele_de_piece_id_dependre"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Droit" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Droit_id" foreignKey="Partenaire_ibfk_3" implied="false" onDeleteCascade="false" table="Partenaire"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="nom" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="2" name="facturable" nullable="false" remarks="" size="0" type="BIT"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="3" name="livrable" nullable="false" remarks="" size="0" type="BIT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="nom" unique="true">
+            <column ascending="true" name="nom"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Emplacement" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Emplacement_id" foreignKey="Lot_ibfk_1" implied="false" onDeleteCascade="false" table="Lot"/>
+            <child catalog="autoconcept" column="Emplacement_id" foreignKey="Mouvement_ibfk_1" implied="false" onDeleteCascade="false" table="Mouvement"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="nom" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="virtuel" nullable="true" remarks="" size="0" type="BIT"/>
+         <column autoUpdated="false" digits="0" id="3" name="parent_id" nullable="true" remarks="Recursive emplacement" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Entreprise" numRows="26" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Entreprise_id" foreignKey="Modele_de_voiture_ibfk_1" implied="false" onDeleteCascade="false" table="Modele_de_voiture"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="raisonSociale" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="siret" nullable="false" remarks="" size="14" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="logo" nullable="true" remarks="Uri vers le logo" size="65535" type="TEXT"/>
+         <column autoUpdated="false" digits="0" id="4" name="parent_id" nullable="true" remarks="Maison mère" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="5" name="Adresse_id" nullable="false" remarks="Adresse du siege sociale" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Entreprise_ibfk_1" implied="false" onDeleteCascade="false" table="Adresse"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Adresse_id" unique="false">
+            <column ascending="true" name="Adresse_id"/>
+         </index>
+         <index name="siret" unique="true">
+            <column ascending="true" name="siret"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Fiche_salarie" numRows="25" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="dateEmbauche" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="service" nullable="true" remarks="" size="25" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="nomUtilisateurSql" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="Partenaire_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Fiche_salarie_ibfk_1" implied="false" onDeleteCascade="false" table="Partenaire"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Partenaire_id" unique="false">
+            <column ascending="true" name="Partenaire_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Ligne_de_commande" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT"/>
+         <column autoUpdated="false" digits="2" id="1" name="prixUnitaire" nullable="true" remarks="" size="15" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="2" name="quantiteCommandee" nullable="true" remarks="Champ calcule" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="3" name="quantiteLivree" nullable="true" remarks="Champ calcule" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="4" name="Bon_de_commande_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Ligne_de_commande_ibfk_1" implied="false" onDeleteCascade="false" table="Bon_de_commande"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="Prix_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Ligne_de_commande_ibfk_2" implied="false" onDeleteCascade="false" table="Prix"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Bon_de_commande_id" unique="false">
+            <column ascending="true" name="Bon_de_commande_id"/>
+         </index>
+         <index name="Prix_id" unique="false">
+            <column ascending="true" name="Prix_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Liste_employees_autoconcept_filiale_v" numRows="0" remarks="" type="VIEW" viewSql="select `autoconcept`.`Contact`.`nom` AS `nom`,`autoconcept`.`Contact`.`prenom` AS `prenom`,`autoconcept`.`Contact`.`dateNaiss` AS `dateNaiss`,`autoconcept`.`Contact`.`courriel` AS `courriel`,`autoconcept`.`Contact`.`telephone` AS `telephone` from ((((`autoconcept`.`Partenaire` join `autoconcept`.`Parametre` `v` on((`v`.`clef` = 'Entreprise'))) join `autoconcept`.`Entreprise` on((`autoconcept`.`Entreprise`.`parent_id` = `v`.`valeur`))) join `autoconcept`.`Partenaire` `p` on((`autoconcept`.`Partenaire`.`Entreprise_id` = `autoconcept`.`Entreprise`.`id`))) join `autoconcept`.`Contact` on((`autoconcept`.`Contact`.`id` = `p`.`Contact_id`)))">
+         <column autoUpdated="false" digits="0" id="0" name="nom" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="1" name="prenom" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="dateNaiss" nullable="true" remarks="Date de naissance" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="3" name="courriel" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="telephone" nullable="true" remarks="Format avec dix chiffres sans delimiteur" size="10" type="VARCHAR"/>
+      </table>
+      <table catalog="autoconcept" name="Liste_employees_autoconcept_v" numRows="0" remarks="" type="VIEW" viewSql="select `autoconcept`.`Contact`.`nom` AS `nom`,`autoconcept`.`Contact`.`prenom` AS `prenom`,`autoconcept`.`Contact`.`dateNaiss` AS `dateNaiss`,`autoconcept`.`Contact`.`courriel` AS `courriel`,`autoconcept`.`Contact`.`telephone` AS `telephone` from (((`autoconcept`.`Partenaire` join `autoconcept`.`Parametre` `v` on((`v`.`clef` = 'Entreprise'))) join `autoconcept`.`Partenaire` `p` on((`p`.`Entreprise_id` = `v`.`valeur`))) join `autoconcept`.`Contact` on((`autoconcept`.`Contact`.`id` = `p`.`Contact_id`)))">
+         <column autoUpdated="false" digits="0" id="0" name="nom" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="1" name="prenom" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="dateNaiss" nullable="true" remarks="Date de naissance" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="3" name="courriel" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="telephone" nullable="true" remarks="Format avec dix chiffres sans delimiteur" size="10" type="VARCHAR"/>
+      </table>
+      <table catalog="autoconcept" name="Liste_employees_v" numRows="0" remarks="" type="VIEW" viewSql="select `autoconcept`.`Contact`.`nom` AS `nom`,`autoconcept`.`Contact`.`prenom` AS `prenom`,`autoconcept`.`Contact`.`dateNaiss` AS `dateNaiss`,`autoconcept`.`Contact`.`courriel` AS `courriel`,`autoconcept`.`Contact`.`telephone` AS `telephone`,`autoconcept`.`Partenaire`.`Entreprise_id` AS `Entreprise_id` from (`autoconcept`.`Partenaire` join `autoconcept`.`Contact` on((`autoconcept`.`Contact`.`id` = `autoconcept`.`Partenaire`.`Contact_id`)))">
+         <column autoUpdated="false" digits="0" id="0" name="nom" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="1" name="prenom" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="dateNaiss" nullable="true" remarks="Date de naissance" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="3" name="courriel" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="telephone" nullable="true" remarks="Format avec dix chiffres sans delimiteur" size="10" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="Entreprise_id" nullable="true" remarks="" size="10" type="INT"/>
+      </table>
+      <table catalog="autoconcept" name="Litige" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="dateLitige" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="commentaire" nullable="true" remarks="Commentaire libre" size="65535" type="TEXT"/>
+         <column autoUpdated="false" digits="0" id="3" name="Bon_de_commande_id_origine" nullable="true" remarks="Bon de commmande provoquant le litige" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Litige_ibfk_1" implied="false" onDeleteCascade="false" table="Bon_de_commande"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="Bon_de_commande_id_resolution" nullable="true" remarks="Bon de commmande qui résoud le litige" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Litige_ibfk_2" implied="false" onDeleteCascade="false" table="Bon_de_commande"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Bon_de_commande_id_origine" unique="false">
+            <column ascending="true" name="Bon_de_commande_id_origine"/>
+         </index>
+         <index name="Bon_de_commande_id_resolution" unique="false">
+            <column ascending="true" name="Bon_de_commande_id_resolution"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Lot" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Lot_id" foreignKey="Mouvement_ibfk_2" implied="false" onDeleteCascade="false" table="Mouvement"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="numeroFournisseur" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="quantite" nullable="false" remarks="Ne peut pas etre inferieur a zero" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="3" name="Emplacement_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Lot_ibfk_1" implied="false" onDeleteCascade="false" table="Emplacement"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="Modele_de_piece_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Lot_ibfk_2" implied="false" onDeleteCascade="false" table="Modele_de_piece"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="Unite_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Lot_ibfk_3" implied="false" onDeleteCascade="false" table="Unite"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Emplacement_id" unique="false">
+            <column ascending="true" name="Emplacement_id"/>
+         </index>
+         <index name="Modele_de_piece_id" unique="false">
+            <column ascending="true" name="Modele_de_piece_id"/>
+         </index>
+         <index name="numeroFournisseur" unique="true">
+            <column ascending="true" name="numeroFournisseur"/>
+         </index>
+         <index name="Unite_id" unique="false">
+            <column ascending="true" name="Unite_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Modele_de_piece" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Modele_de_piece_id" foreignKey="Categorie_piece_ibfk_1" implied="false" onDeleteCascade="false" table="Categorie_piece"/>
+            <child catalog="autoconcept" column="Modele_de_piece_id" foreignKey="Compatibilite_ibfk_2" implied="false" onDeleteCascade="false" table="Compatibilite"/>
+            <child catalog="autoconcept" column="Modele_de_piece_id" foreignKey="Dependance_ibfk_1" implied="false" onDeleteCascade="false" table="Dependance"/>
+            <child catalog="autoconcept" column="Modele_de_piece_id_dependre" foreignKey="Dependance_ibfk_2" implied="false" onDeleteCascade="false" table="Dependance"/>
+            <child catalog="autoconcept" column="Modele_de_piece_id" foreignKey="Lot_ibfk_2" implied="false" onDeleteCascade="false" table="Lot"/>
+            <child catalog="autoconcept" column="Modele_de_piece_id" foreignKey="Prix_ibfk_1" implied="false" onDeleteCascade="false" table="Prix"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="nom" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="designation" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="restriction" nullable="true" remarks="Commentaire libre" size="65535" type="TEXT"/>
+         <column autoUpdated="false" digits="0" id="4" name="compatibiliteApplication" nullable="true" remarks="Commentaire libre" size="65535" type="TEXT"/>
+         <column autoUpdated="false" digits="0" id="5" name="commentaire" nullable="true" remarks="Commentaire libre" size="65535" type="TEXT"/>
+         <column autoUpdated="false" digits="0" id="6" name="fichePdf" nullable="true" remarks="URL vers la documentation" size="65535" type="TEXT"/>
+         <column autoUpdated="false" digits="0" id="7" name="referenceConstructeur" nullable="true" remarks="Le format est libre" size="65535" type="TEXT"/>
+         <column autoUpdated="false" digits="0" id="8" name="Unite_id" nullable="true" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Modele_de_piece_ibfk_1" implied="false" onDeleteCascade="false" table="Unite"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="nom" unique="true">
+            <column ascending="true" name="nom"/>
+         </index>
+         <index name="Unite_id" unique="false">
+            <column ascending="true" name="Unite_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Modele_de_voiture" numRows="25" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Modele_de_voiture_id" foreignKey="Compatibilite_ibfk_1" implied="false" onDeleteCascade="false" table="Compatibilite"/>
+            <child catalog="autoconcept" column="Modele_de_voiture_id" foreignKey="Voiture_client_ibfk_2" implied="false" onDeleteCascade="false" table="Voiture_client"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="modele" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="classe" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="annee" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="4" name="motorisation" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="carburantEnergie" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="Entreprise_id" nullable="true" remarks="Marque" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Modele_de_voiture_ibfk_1" implied="false" onDeleteCascade="false" table="Entreprise"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Entreprise_id" unique="false">
+            <column ascending="true" name="Entreprise_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Mouvement" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="dateMouvement" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="parent_id" nullable="false" remarks="Nouvelle emplacement du lot" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="3" name="Emplacement_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Mouvement_ibfk_1" implied="false" onDeleteCascade="false" table="Emplacement"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="Lot_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Mouvement_ibfk_2" implied="false" onDeleteCascade="false" table="Lot"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="Partenaire_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Mouvement_ibfk_3" implied="false" onDeleteCascade="false" table="Partenaire"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Emplacement_id" unique="false">
+            <column ascending="true" name="Emplacement_id"/>
+         </index>
+         <index name="Lot_id" unique="false">
+            <column ascending="true" name="Lot_id"/>
+         </index>
+         <index name="Partenaire_id" unique="false">
+            <column ascending="true" name="Partenaire_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Parametre" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="clef" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="valeur" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="commentaire" nullable="true" remarks="" size="65535" type="TEXT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Partenaire" numRows="26" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Partenaire_Client_id_Facturation" foreignKey="Bon_de_commande_ibfk_2" implied="false" onDeleteCascade="false" table="Bon_de_commande"/>
+            <child catalog="autoconcept" column="Partenaire_Client_id_Livraison" foreignKey="Bon_de_commande_ibfk_3" implied="false" onDeleteCascade="false" table="Bon_de_commande"/>
+            <child catalog="autoconcept" column="Partenaire_Fournisseur_id" foreignKey="Bon_de_commande_ibfk_1" implied="false" onDeleteCascade="false" table="Bon_de_commande"/>
+            <child catalog="autoconcept" column="Partenaire_id" foreignKey="Fiche_salarie_ibfk_1" implied="false" onDeleteCascade="false" table="Fiche_salarie"/>
+            <child catalog="autoconcept" column="Partenaire_id" foreignKey="Mouvement_ibfk_3" implied="false" onDeleteCascade="false" table="Mouvement"/>
+            <child catalog="autoconcept" column="Partenaire_id" foreignKey="Partenaire_Adresse_ibfk_2" implied="false" onDeleteCascade="false" table="Partenaire_Adresse"/>
+            <child catalog="autoconcept" column="Partenaire_id" foreignKey="Prix_ibfk_2" implied="false" onDeleteCascade="false" table="Prix"/>
+            <child catalog="autoconcept" column="Partenaire_id" foreignKey="Voiture_client_ibfk_1" implied="false" onDeleteCascade="false" table="Voiture_client"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="Contact_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Partenaire_ibfk_2" implied="false" onDeleteCascade="false" table="Contact"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="Entreprise_id" nullable="true" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Partenaire_ibfk_1" implied="false" onDeleteCascade="false" table="Contact"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="Droit_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Partenaire_ibfk_3" implied="false" onDeleteCascade="false" table="Droit"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="discriminant" unique="true">
+            <column ascending="true" name="Contact_id"/>
+            <column ascending="true" name="Entreprise_id"/>
+            <column ascending="true" name="Droit_id"/>
+         </index>
+         <index name="Droit_id" unique="false">
+            <column ascending="true" name="Droit_id"/>
+         </index>
+         <index name="Entreprise_id" unique="false">
+            <column ascending="true" name="Entreprise_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Partenaire_Adresse" numRows="26" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="Adresse_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Partenaire_Adresse_ibfk_1" implied="false" onDeleteCascade="false" table="Adresse"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="Partenaire_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Partenaire_Adresse_ibfk_2" implied="false" onDeleteCascade="false" table="Partenaire"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="2" name="dateCreation" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="3" name="dateModification" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <index name="Adresse_id" unique="false">
+            <column ascending="true" name="Adresse_id"/>
+         </index>
+         <index name="Partenaire_id" unique="false">
+            <column ascending="true" name="Partenaire_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Prix" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Prix_id" foreignKey="Ligne_de_commande_ibfk_2" implied="false" onDeleteCascade="false" table="Ligne_de_commande"/>
+         </column>
+         <column autoUpdated="false" digits="2" id="1" name="prixUnitaire" nullable="false" remarks="En euros. Il ne peut pas etre inferieur a zero" size="15" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="2" name="marge" nullable="false" remarks="" size="12" type="FLOAT"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="3" name="dateCreation" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="4" name="dateModification" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="5" name="Modele_de_piece_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Prix_ibfk_1" implied="false" onDeleteCascade="false" table="Modele_de_piece"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="Partenaire_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Prix_ibfk_2" implied="false" onDeleteCascade="false" table="Partenaire"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="7" name="Unite_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Prix_ibfk_3" implied="false" onDeleteCascade="false" table="Unite"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="Modele_de_piece_id" unique="false">
+            <column ascending="true" name="Modele_de_piece_id"/>
+         </index>
+         <index name="Partenaire_id" unique="false">
+            <column ascending="true" name="Partenaire_id"/>
+         </index>
+         <index name="Unite_id" unique="false">
+            <column ascending="true" name="Unite_id"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Unite" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT">
+            <child catalog="autoconcept" column="Unite_id" foreignKey="Lot_ibfk_3" implied="false" onDeleteCascade="false" table="Lot"/>
+            <child catalog="autoconcept" column="Unite_id" foreignKey="Modele_de_piece_ibfk_1" implied="false" onDeleteCascade="false" table="Modele_de_piece"/>
+            <child catalog="autoconcept" column="Unite_id" foreignKey="Prix_ibfk_3" implied="false" onDeleteCascade="false" table="Prix"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="nom" nullable="false" remarks="" size="25" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="ratio" nullable="true" remarks="Ratio entre les unites" size="12" type="FLOAT"/>
+         <column autoUpdated="false" digits="0" id="3" name="Unite_base_id" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="nom" unique="true">
+            <column ascending="true" name="nom"/>
+         </index>
+      </table>
+      <table catalog="autoconcept" name="Voiture_client" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="Clef primaire" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="immatriculation" nullable="true" remarks="" size="25" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="dateMiseEnCirculation" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="3" name="dateCreation" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="4" name="dateModification" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="5" name="parent_id" nullable="true" remarks="Si null, proprietaire actuelle. Sinon nouveau proprietaire." size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="6" name="Partenaire_id" nullable="false" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Voiture_client_ibfk_1" implied="false" onDeleteCascade="false" table="Partenaire"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="7" name="Modele_de_voiture_id" nullable="true" remarks="" size="10" type="INT">
+            <parent catalog="autoconcept" column="id" foreignKey="Voiture_client_ibfk_2" implied="false" onDeleteCascade="false" table="Modele_de_voiture"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="immatriculation_index" unique="false">
+            <column ascending="true" name="immatriculation"/>
+         </index>
+         <index name="Modele_de_voiture_id" unique="false">
+            <column ascending="true" name="Modele_de_voiture_id"/>
+         </index>
+         <index name="Partenaire_id" unique="false">
+            <column ascending="true" name="Partenaire_id"/>
+         </index>
+      </table>
+   </tables>
+</database>

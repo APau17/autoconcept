@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS Emplacement  (
         virtuel Boolean,
 
         # Keys
-        parent_id Int NOT NULL
+        parent_id Int
         COMMENT 'Recursive emplacement'
 );
 
